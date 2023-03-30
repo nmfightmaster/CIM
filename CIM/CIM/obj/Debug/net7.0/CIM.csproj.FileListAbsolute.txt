@@ -130,3 +130,7 @@ C:\Users\Beep Boop\Documents\CIM\CIM\CIM\bin\Debug\net7.0\Humanizer.dll
 C:\Users\Beep Boop\Documents\CIM\CIM\CIM\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\Beep Boop\Documents\CIM\CIM\CIM\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\Beep Boop\Documents\CIM\CIM\CIM\bin\Debug\net7.0\System.CodeDom.dll
+L:\CIM\CIM\CIM\bin\Debug\net7.0\Humanizer.dll
+L:\CIM\CIM\CIM\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+L:\CIM\CIM\CIM\bin\Debug\net7.0\Mono.TextTemplating.dll
+L:\CIM\CIM\CIM\bin\Debug\net7.0\System.CodeDom.dll

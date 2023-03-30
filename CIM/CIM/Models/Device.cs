@@ -10,6 +10,6 @@ namespace CIM.Models
         public string? OU { get; set; }
         public string? PU { get; set; }
 
-        public string[]? Issues { get; set; }
+        public string? PI { get; set; }
     }
 }
