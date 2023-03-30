@@ -9,7 +9,8 @@ namespace CIM.Models
         public string ServiceTag { get; set; }
         public string? OU { get; set; }
         public string? PU { get; set; }
-
         public string? PI { get; set; }
+        public string Status { get; set; }
+
     }
 }

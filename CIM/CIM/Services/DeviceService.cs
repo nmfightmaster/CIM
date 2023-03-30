@@ -15,7 +15,8 @@ namespace CIM.Services
                 .Include(c => c.ServiceTag)
                 .Include(c => c.OU)
                 .Include(c => c.PU)
-                .Include(c => c.PI);
+                .Include(c => c.PI)
+                .Include(c => c.Status);
             return await devices.ToListAsync();
         }
     }
