@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using CIM.Models;
 namespace CIM.Data
 {
     public class CIMContext : DbContext
@@ -7,5 +8,6 @@ namespace CIM.Data
         {
         
         }
+        public DbSet<Device> Devices { get; set; }
     }
 }
