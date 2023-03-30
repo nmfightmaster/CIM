@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "L:\\CIM\\CIM\\CIM\\CIM.csproj": {}
+    "C:\\Users\\Beep Boop\\Documents\\CIM\\CIM\\CIM\\CIM.csproj": {}
   },
   "projects": {
-    "L:\\CIM\\CIM\\CIM\\CIM.csproj": {
+    "C:\\Users\\Beep Boop\\Documents\\CIM\\CIM\\CIM\\CIM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "L:\\CIM\\CIM\\CIM\\CIM.csproj",
+        "projectUniqueName": "C:\\Users\\Beep Boop\\Documents\\CIM\\CIM\\CIM\\CIM.csproj",
         "projectName": "CIM",
-        "projectPath": "L:\\CIM\\CIM\\CIM\\CIM.csproj",
-        "packagesPath": "C:\\Users\\nfightmaster\\.nuget\\packages\\",
-        "outputPath": "L:\\CIM\\CIM\\CIM\\obj\\",
+        "projectPath": "C:\\Users\\Beep Boop\\Documents\\CIM\\CIM\\CIM\\CIM.csproj",
+        "packagesPath": "C:\\Users\\Beep Boop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Beep Boop\\Documents\\CIM\\CIM\\CIM\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nfightmaster\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Beep Boop\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

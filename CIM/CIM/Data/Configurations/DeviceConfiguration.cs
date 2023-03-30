@@ -12,9 +12,11 @@ namespace CIM.Data.Configurations
                 .HasMaxLength(9);
             builder.Property(x => x.ServiceTag)
                 .HasMaxLength(7);
+            builder.HasData(new List<Device>
+            {
+                new Device { Id = 1,Name = "CHASTEST",ServiceTag = "1234abc",OU="\\chas.local\\CLINIC\\DEPT\\",PU="Biggles T. McClure",Issues=new string[]{"being too handsome","disliking training","micromanaging"}}
+            });
                 
         }
-    }
-    {
     }
 }
