@@ -8,45 +8,21 @@
     <tr>
         <th>Name</th>
         <th>Service Tag</th>
+        <th>OU</th>
+        <th>Primary User</th>
+        <th>Previous Issue</th>
+        <th>Status</th>
     </tr>
-    <tr>
-        <td>list of devices</td>
-        <td>list of devices</td>
-    </tr>
+    @foreach (var device in Model.Devices)
+    {
+        <tr>
+            <td>@device.Name</td>
+            <td>@device.ServiceTag</td>
+            <td>@device.OU</td>
+            <td>@device.PU</td>
+            <td>@device.PI</td>
+            <td>@device.Status</td>
+        </tr>
+    }
 </table>
 
-<h1>Devices Needing Imaged</h1>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Service Tag</th>
-    </tr>
-    <tr>
-        <td>list of devices</td>
-        <td>list of devices</td>
-    </tr>
-</table>
-
-<h1>Devices in Dell Repair</h1>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Service Tag</th>
-    </tr>
-    <tr>
-        <td>list of devices</td>
-        <td>list of devices</td>
-    </tr>
-</table>
-
-<h1>Deployed Devices</h1>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Service Tag</th>
-    </tr>
-    <tr>
-        <td>list of devices</td>
-        <td>list of devices</td>
-    </tr>
-</table>

@@ -15,8 +15,5 @@ namespace CIM.Pages
         public List<Device> Devices { get; set; }
         public async Task OnGetAsync() => Devices =
             await  _deviceService.GetAllAsync();
-        public void OnGet()
-        {
-        }
     }
 }

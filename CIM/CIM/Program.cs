@@ -1,4 +1,5 @@
 using CIM.Data;
+using CIM.Services;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddDbContext<CIMContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString
         ("CIMContext"));
 });
+builder.Services.AddScoped<IDeviceService, DeviceService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

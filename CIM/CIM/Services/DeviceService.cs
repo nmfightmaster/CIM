@@ -10,13 +10,7 @@ namespace CIM.Services
         public DeviceService(CIMContext context) => _context = context;
         public async Task<List<Device>> GetAllAsync()
         {
-            var devices = _context.Devices
-                .Include(c => c.Name)
-                .Include(c => c.ServiceTag)
-                .Include(c => c.OU)
-                .Include(c => c.PU)
-                .Include(c => c.PI)
-                .Include(c => c.Status);
+            var devices = _context.Devices;    
             return await devices.ToListAsync();
         }
     }
