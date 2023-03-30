@@ -22,7 +22,7 @@ body {
     font-family: 'Myriad W01 Regular';
 }
 
-table, th, td {
+#inventory table, th, td {
     border-collapse: collapse;
     border: 1px solid #ddd;
     padding: 8px;
@@ -30,17 +30,17 @@ table, th, td {
     border-bottom: 1px solid #ddd;
 }
 
-td {
+#inventory td {
     vertical-align: middle;
 }
 
-tr:hover td {
+#inventory tr:hover td {
     background-color: #c2e189;
 }
-tr:nth-child(even) {
+#inventory tr:nth-child(even) {
     background-color: #C3D0DB;
 }
-th {
+#inventory th {
     height: 10px;
     padding: 15px;
     text-align: center;

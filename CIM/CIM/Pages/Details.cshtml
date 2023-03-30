@@ -1,13 +1,13 @@
-﻿@page
+﻿@page "{deviceName}"
 @model CIM.Pages.DetailsModel
 @{
-    ViewData["Title"] = "CHASXXXX";
+    ViewData["Title"] = RouteData.Values["deviceName"];
 }
 
-<h1>CHASXXXX</h1>
+<h1>@RouteData.Values["deviceName"]</h1>
 
 <div>
-    <table style="width:100%">
+    <table>
         <tr>
             <th>Image Status</th>
         </tr>
