@@ -126,3 +126,7 @@ C:\Users\Beep Boop\Documents\CIM\CIM\CIM\obj\Debug\net7.0\scopedcss\projectbundl
 C:\Users\Beep Boop\Documents\CIM\CIM\CIM\obj\Debug\net7.0\CIM.csproj.CopyComplete
 C:\Users\Beep Boop\Documents\CIM\CIM\CIM\obj\Debug\net7.0\CIM.genruntimeconfig.cache
 C:\Users\Beep Boop\Documents\CIM\CIM\CIM\obj\Debug\net7.0\ref\CIM.dll
+C:\Users\Beep Boop\Documents\CIM\CIM\CIM\bin\Debug\net7.0\Humanizer.dll
+C:\Users\Beep Boop\Documents\CIM\CIM\CIM\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Beep Boop\Documents\CIM\CIM\CIM\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\Beep Boop\Documents\CIM\CIM\CIM\bin\Debug\net7.0\System.CodeDom.dll
