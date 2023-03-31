@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using System.ComponentModel;
 
 namespace CIM.Pages
 {
@@ -37,6 +38,14 @@ namespace CIM.Pages
             {
                 return NotFound();
             }
+        }
+        public string GetAttributeDisplayName(PropertyInfo property)
+        {
+            var atts = property.GetCustomAttributes(
+                typeof(DisplayNameAttribute), true);
+            if (atts.Length == 0)
+                return property.Name;
+            return (atts[0] as DisplayNameAttribute).DisplayName;
         }
     }
 }

@@ -20,7 +20,7 @@
                 if (property.Name != "Id")
                 {
                     <tr>
-                        <th>@property.Name</th>
+                        <th>@Model.GetAttributeDisplayName(property)</th>
                     </tr>
                     <tr>
                         <td>@property.GetValue(Model.Device, null)</td>
