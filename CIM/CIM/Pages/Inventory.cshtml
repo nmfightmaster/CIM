@@ -15,7 +15,7 @@
     </tr>
     @foreach (var device in Model.Devices)
     {
-        <tr>
+        <tr onclick="location.href = '@(Url.Page("Details", new { Name = device.Name }))'">
             <td>@device.Name</td>
             <td>@device.ServiceTag</td>
             <td>@device.OU</td>
