@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.ObjectPool;
+using System.Text.Json.Serialization;
 
 namespace CIM.Models
 {

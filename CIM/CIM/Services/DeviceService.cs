@@ -37,7 +37,8 @@ namespace CIM.Services
         public async Task<Device> GetByNameAsync(string name)
         {
             return await _context.Devices
-                .SingleOrDefaultAsync(d => d.Name == name);
+                .SingleOrDefaultAsync(d =>
+                EF.Functions.Collate(d.Name, "NOCASE") == name);
         }
     }
 }
