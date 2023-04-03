@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CIM.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CIM.Pages
@@ -12,9 +13,9 @@ namespace CIM.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnPost(string device)
         {
-
+            Url.Page("Details", new { Name = device });
         }
     }
 }
