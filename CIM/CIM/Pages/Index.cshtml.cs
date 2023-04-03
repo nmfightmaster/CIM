@@ -1,4 +1,5 @@
 ﻿using CIM.Models;
+using CIM.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,10 +13,13 @@ namespace CIM.Pages
         {
             _logger = logger;
         }
+        [BindProperty]
+        public string Device { get; set; }
 
-        public void OnPost(string device)
+        public IActionResult OnPost()
         {
-            Url.Page("Details", new { Name = device });
+            string url = $"/Details/{Device}";
+            return Redirect(url);
         }
     }
 }

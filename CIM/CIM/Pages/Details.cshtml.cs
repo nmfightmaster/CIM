@@ -36,7 +36,7 @@ namespace CIM.Pages
             }
             else
             {
-                return NotFound();
+                return new RedirectToPageResult("/Create");
             }
         }
         public string GetAttributeDisplayName(PropertyInfo property)
