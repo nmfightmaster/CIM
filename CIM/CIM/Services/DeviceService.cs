@@ -40,5 +40,19 @@ namespace CIM.Services
                 .SingleOrDefaultAsync(d =>
                 EF.Functions.Collate(d.Name, "NOCASE") == name);
         }
+
+        public async Task<Device> CreateAsync(Device device)
+        {
+            _context.Add(device);
+            await _context.SaveChangesAsync();
+            return device;
+        }
+
+        public async Task<Device> EditAsync(Device device)
+        {
+            _context.Update(device);
+            await _context.SaveChangesAsync(); 
+            return device;
+        }
     }
 }

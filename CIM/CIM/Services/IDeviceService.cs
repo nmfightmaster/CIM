@@ -6,5 +6,8 @@ namespace CIM.Services
         Task<List<Device>> GetAllAsync();
         Task<List<string>> GetDeviceNamesAsync();
         Task<Device> GetByNameAsync(string name);
+        Task<Device> CreateAsync(Device device);
+        Task<Device> EditAsync(Device device);
+        // Task<Device> DeleteAsync(string name);
     }
 }
