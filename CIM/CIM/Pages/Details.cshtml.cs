@@ -1,51 +1,43 @@
-using CIM.Services;
-using CIM.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
+using CIM.Data;
+using CIM.Models;
 
 namespace CIM.Pages
 {
     public class DetailsModel : PageModel
     {
-        private readonly IDeviceService _deviceService;
-        public DetailsModel(IDeviceService deviceService)
+        private readonly CIM.Data.CIMContext _context;
+
+        public DetailsModel(CIM.Data.CIMContext context)
         {
-            _deviceService = deviceService;
+            _context = context;
         }
-        [BindProperty(SupportsGet = true)]
-        public string Name { get; set; }
-        public Device Device { get; set; }
-        public PropertyInfo[] PropertiesList { get; set; }
-        public async Task<IActionResult> OnGetAsync()
+
+      public Device Device { get; set; } = default!; 
+
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            var devices = await _deviceService.GetDeviceNamesAsync();
-            if (devices.Contains(Name.ToLowerInvariant())) 
+            if (id == null || _context.Devices == null)
             {
-                Device = await _deviceService.GetByNameAsync(Name);
-                if (Device == null) 
-                {
-                    return NotFound();
-                }
-                PropertiesList = Device.GetType().GetProperties();
-                return Page();
+                return NotFound();
             }
-            else
+
+            var device = await _context.Devices.FirstOrDefaultAsync(m => m.Id == id);
+            if (device == null)
             {
-                return new RedirectToPageResult("/Create");
+                return NotFound();
             }
-        }
-        public string GetAttributeDisplayName(PropertyInfo property)
-        {
-            var atts = property.GetCustomAttributes(
-                typeof(DisplayNameAttribute), true);
-            if (atts.Length == 0)
-                return property.Name;
-            return (atts[0] as DisplayNameAttribute).DisplayName;
+            else 
+            {
+                Device = device;
+            }
+            return Page();
         }
     }
 }

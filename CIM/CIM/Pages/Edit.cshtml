@@ -1,7 +1,60 @@
-﻿@page "{name}"
+﻿@page
 @model CIM.Pages.EditModel
+
 @{
-    ViewData["Title"] = RouteData.Values["deviceName"];
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Edit @RouteData.Values["deviceName"]</h1>
+<h1>Edit</h1>
+
+<h4>Device</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Device.Id" />
+            <div class="form-group">
+                <label asp-for="Device.Name" class="control-label"></label>
+                <input asp-for="Device.Name" class="form-control" />
+                <span asp-validation-for="Device.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Device.ServiceTag" class="control-label"></label>
+                <input asp-for="Device.ServiceTag" class="form-control" />
+                <span asp-validation-for="Device.ServiceTag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Device.OU" class="control-label"></label>
+                <input asp-for="Device.OU" class="form-control" />
+                <span asp-validation-for="Device.OU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Device.PU" class="control-label"></label>
+                <input asp-for="Device.PU" class="form-control" />
+                <span asp-validation-for="Device.PU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Device.PI" class="control-label"></label>
+                <input asp-for="Device.PI" class="form-control" />
+                <span asp-validation-for="Device.PI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Device.Status" class="control-label"></label>
+                <input asp-for="Device.Status" class="form-control" />
+                <span asp-validation-for="Device.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
