@@ -23,8 +23,12 @@ namespace CIM.Pages
         [BindProperty]
         public Device Device { get; set; } = default!;
 
+        public SelectList statusList { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            string[] statuses = { "Deployed", "Needs Imaged", "Ready to Deploy" };
+            statusList = new SelectList(statuses);
             if (id == null || _context.Devices == null)
             {
                 return NotFound();
