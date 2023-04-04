@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Device.ServiceTag)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Device.ServiceTag)
+            <a href='@string.Format("https://www.dell.com/support/home/en-us/product-support/servicetag/{0}/overview", Model.Device.ServiceTag)'>@Model.Device.ServiceTag</a>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Device.OU)

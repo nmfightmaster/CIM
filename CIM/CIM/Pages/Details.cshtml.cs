@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.DirectoryServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CIM.Data;
 using CIM.Models;
+using System.Collections;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using CIM.Services;
 
 namespace CIM.Pages
 {
@@ -18,8 +22,7 @@ namespace CIM.Pages
         {
             _context = context;
         }
-
-      public Device Device { get; set; } = default!; 
+        public Device Device { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -39,5 +42,6 @@ namespace CIM.Pages
             }
             return Page();
         }
+
     }
 }
