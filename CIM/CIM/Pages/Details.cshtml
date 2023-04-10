@@ -43,6 +43,12 @@
         </dd>
     </dl>
 </div>
+@foreach (var previousIssue in Model.Device.PreviousIssues)
+{
+    <div class="="mb-3">
+        <h5>@previousIssue.IssueType</h5>
+    </div>
+}
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a> |
     <a asp-page="./Index">Back to List</a>
