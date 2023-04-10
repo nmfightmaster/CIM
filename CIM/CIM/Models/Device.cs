@@ -17,6 +17,7 @@ namespace CIM.Models
         [DisplayName("Primary User")]
         public string? PU { get; set; }
         public string Status { get; set; }
+        public List<PreviousIssue> PreviousIssues { get; set; } = new List<PreviousIssue>();
 
     }
 }

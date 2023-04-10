@@ -11,11 +11,13 @@ namespace CIM.Data
         
         }
         public DbSet<Device> Devices { get; set; }
+        public DbSet<PreviousIssue> PreviousIssues { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-                .ApplyConfiguration(new DeviceConfiguration());
+                .ApplyConfiguration(new DeviceConfiguration())
+                .ApplyConfiguration(new PreviousIssueConfiguration());
         }
     }
 }
