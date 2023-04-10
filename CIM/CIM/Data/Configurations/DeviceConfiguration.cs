@@ -1,7 +1,6 @@
 ﻿using CIM.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.DirectoryServices;
 
 namespace CIM.Data.Configurations
 {

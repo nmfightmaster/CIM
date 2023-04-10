@@ -433,8 +433,7 @@ L:\CIM\CIM\CIM\bin\Debug\net7.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.res
 L:\CIM\CIM\CIM\bin\Debug\net7.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 L:\CIM\CIM\CIM\bin\Debug\net7.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 L:\CIM\CIM\CIM\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
-L:\CIM\CIM\CIM\bin\Debug\net7.0\System.DirectoryServices.dll
-L:\CIM\CIM\CIM\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
-L:\CIM\CIM\CIM\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.DirectoryServices.dll
-L:\CIM\CIM\CIM\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
-L:\CIM\CIM\CIM\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+L:\CIM\CIM\CIM\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+L:\CIM\CIM\CIM\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+L:\CIM\CIM\CIM\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+L:\CIM\CIM\CIM\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
