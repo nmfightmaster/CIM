@@ -13,13 +13,13 @@
 <table id="inventory">
     <thead>
         <tr>
-            <th>
+            <th onclick="sortTable(0)">
                 @Html.DisplayNameFor(model => model.Device[0].Name)
             </th>
-            <th>
+            <th onclick="sortTable(1)">
                 @Html.DisplayNameFor(model => model.Device[0].ServiceTag)
             </th>           
-            <th>
+            <th onclick="sortTable(2)">
                 @Html.DisplayNameFor(model => model.Device[0].Status)
             </th>
             <th></th>
