@@ -30,15 +30,14 @@ namespace CIM.Services
             _cache.Set(nameof(GetDeviceNamesAsync),
                 await _context.Devices.Select(d =>
                 d.Name.ToLowerInvariant()).ToListAsync());
-            return _cache.Get<List<string>>(
-                nameof(GetDeviceNamesAsync));
+            return _cache.Get<List<string>>(nameof(GetDeviceNamesAsync));
         }
 
         public async Task<Device> GetByNameAsync(string name)
         {
             return await _context.Devices
-                .SingleOrDefaultAsync(d =>
-                EF.Functions.Collate(d.Name, "NOCASE") == name);
+                .Include(d => d.PreviousIssues)
+                .SingleOrDefaultAsync(d => EF.Functions.Collate(d.Name, "NOCASE") == name);
         }
 
         public async Task<Device> CreateAsync(Device device)
