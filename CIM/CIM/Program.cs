@@ -10,7 +10,9 @@ builder.Services.AddDbContext<CIMContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString
         ("CIMContext"));
 });
-builder.Services.AddScoped<IDeviceService, DeviceService>();
+builder.Services.AddScoped<IDeviceService, DeviceService>()
+    .AddScoped<IPIService, PIService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
