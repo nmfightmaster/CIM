@@ -53,6 +53,7 @@
                 <th onclick="sortTable(1)">Details</th>
                 <th onclick="sortTable(2)">Issue Date</th>
                 <th onclick="sortTable(3)">Technician</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -69,10 +70,6 @@
         </tbody>
     </table>
 }
-
-
-
-
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a> |
     <a asp-page="../Index">Back to List</a>
