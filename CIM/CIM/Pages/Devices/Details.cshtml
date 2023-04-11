@@ -44,32 +44,36 @@
     </dl>
 </div>
 
+@if (Model.Device.PreviousIssues.Count >= 1)
+{
+    <table id="inventory">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Type</th>
+                <th onclick="sortTable(1)">Details</th>
+                <th onclick="sortTable(2)">Issue Date</th>
+                <th onclick="sortTable(3)">Technician</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var issue in Model.Device.PreviousIssues)
+            {
+                <tr>
+                    <td>@issue.IssueType</td>
+                    <td>@issue.IssueDetails</td>
+                    <td>@issue.IssueDate</td>
+                    <td>@issue.Technician</td>
+                    <td><a asp-page="/PreviousIssues/Edit" asp-route-id="@issue.Id">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
-<table id="inventory">
-    <thead>
-    <tr>
-            <th onclick="sortTable(0)">Type</th>
-            <th onclick="sortTable(1)">Details</th>
-            <th onclick="sortTable(2)">Issue Date</th>
-            <th onclick="sortTable(3)">Technician</th>
-    </tr>
-</thead>
-<tbody>
-    @foreach (var issue in Model.Device.PreviousIssues)
-    {
-        <tr>
-            <td>@issue.IssueType</td>
-            <td>@issue.IssueDetails</td>
-            <td>@issue.IssueDate</td>
-            <td>@issue.Technician</td>
-        </tr>
-    }
-</tbody>
-</table>
 
 
 
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="../Index">Back to List</a>
 </div>

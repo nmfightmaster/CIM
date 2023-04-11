@@ -16,20 +16,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = L:\CIM\CIM\CIM
 build_property._RazorSourceGeneratorDebug = 
 
-[L:/CIM/CIM/CIM/Pages/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXRlLmNzaHRtbA==
+[L:/CIM/CIM/CIM/Pages/Devices/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM/CIM/Pages/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVsZXRlLmNzaHRtbA==
+[L:/CIM/CIM/CIM/Pages/Devices/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM/CIM/Pages/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV0YWlscy5jc2h0bWw=
+[L:/CIM/CIM/CIM/Pages/Devices/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM/CIM/Pages/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdC5jc2h0bWw=
+[L:/CIM/CIM/CIM/Pages/Devices/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [L:/CIM/CIM/CIM/Pages/Error.cshtml]
@@ -40,8 +40,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM/CIM/Pages/Inventory.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW52ZW50b3J5LmNzaHRtbA==
+[L:/CIM/CIM/CIM/Pages/PreviousIssues/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJldmlvdXNJc3N1ZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[L:/CIM/CIM/CIM/Pages/PreviousIssues/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJldmlvdXNJc3N1ZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[L:/CIM/CIM/CIM/Pages/PreviousIssues/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJldmlvdXNJc3N1ZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[L:/CIM/CIM/CIM/Pages/PreviousIssues/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJldmlvdXNJc3N1ZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [L:/CIM/CIM/CIM/Pages/Shared/_ValidationScriptsPartial.cshtml]
