@@ -16,7 +16,8 @@ namespace CIM.Services
         }
         public async Task<List<Device>> GetAllAsync()
         {
-            var devices = _context.Devices;    
+            var devices = _context.Devices
+                .Include(d => d.PreviousIssues);    
             return await devices.ToListAsync();
         }
 

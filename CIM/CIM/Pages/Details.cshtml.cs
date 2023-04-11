@@ -21,7 +21,7 @@ namespace CIM.Pages
         {
             _context = context;
         }
-        public Device Device { get; set; } = default!; 
+        public Device Device { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,8 +29,8 @@ namespace CIM.Pages
             {
                 return NotFound();
             }
-
-            var device = await _context.Devices.FirstOrDefaultAsync(m => m.Id == id);
+            var device = await _context.Devices.Include(d => d.PreviousIssues)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (device == null)
             {
                 return NotFound();

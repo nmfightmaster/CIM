@@ -26,6 +26,7 @@ body {
     border-collapse: collapse;
     border: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
 #inventory td, th {
@@ -43,4 +44,8 @@ body {
     text-align: center;
     background-color: #789d4a;
     color: white;
+}
+.body {
+    height: 100px;
+    overflow: auto
 }
