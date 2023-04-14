@@ -7,12 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CIM.Data;
 using CIM.Models;
+using System.Diagnostics;
 
 namespace CIM.Pages.PreviousIssues
 {
     public class CreateModel : PageModel
     {
         private readonly CIM.Data.CIMContext _context;
+        [BindProperty]
+        public int id { get; set; }
+        [BindProperty]
+        public PreviousIssue PreviousIssue { get; set; } = default!;
+        public string[] issueTypes = new[] { "Hardware", "Software" };
 
         public CreateModel(CIM.Data.CIMContext context)
         {
@@ -21,26 +27,21 @@ namespace CIM.Pages.PreviousIssues
 
         public IActionResult OnGet()
         {
-        ViewData["DeviceId"] = new SelectList(_context.Devices, "Id", "Id");
             return Page();
-        }
-
-        [BindProperty]
-        public PreviousIssue PreviousIssue { get; set; } = default!;
-        
+        }  
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.PreviousIssues == null || PreviousIssue == null)
+            if (!ModelState.IsValid || PreviousIssue == null)
             {
                 return Page();
             }
-
+            PreviousIssue.DeviceId = id;
             _context.PreviousIssues.Add(PreviousIssue);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Devices/Details", new { id });
         }
     }
 }

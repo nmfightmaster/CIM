@@ -44,12 +44,13 @@ namespace CIM.Pages.PreviousIssues
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            
             if (id == null || _context.PreviousIssues == null)
             {
                 return NotFound();
             }
             var previousissue = await _context.PreviousIssues.FindAsync(id);
-
+            id = previousissue.DeviceId;
             if (previousissue != null)
             {
                 PreviousIssue = previousissue;
@@ -57,7 +58,7 @@ namespace CIM.Pages.PreviousIssues
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Devices/Details", new { id });
         }
     }
 }
