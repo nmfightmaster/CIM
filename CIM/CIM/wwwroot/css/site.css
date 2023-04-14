@@ -49,3 +49,11 @@ body {
     height: 100px;
     overflow: auto
 }
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

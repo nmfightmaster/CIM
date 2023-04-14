@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CIM.Data;
 using CIM.Models;
+using Newtonsoft.Json.Linq;
+using System.Security.Policy;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.EntityFrameworkCore;
 
 namespace CIM.Pages
 {
@@ -25,21 +30,27 @@ namespace CIM.Pages
         }
 
         [BindProperty]
-        public Device Device { get; set; } = default!;
-        
+        public Device Device { get; set; } = new Device();
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Devices == null || Device == null)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
-
+            if (await _context.Devices.AnyAsync(d => d.ServiceTag.ToLower() == Device.ServiceTag.ToLower()))
+            {
+                ModelState.AddModelError("", "A device with the same service tag already exists.");
+                return Page();
+            }
+            if (await _context.Devices.AnyAsync(d => d.Name.ToLower() == Device.Name.ToLower()))
+            {
+                ModelState.AddModelError("", "A device with the same name already exists.");
+                return Page();
+            }
             _context.Devices.Add(Device);
             await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
-        }
+            return RedirectToPage("../Index");
+        } 
     }
 }
