@@ -22,25 +22,43 @@ body {
     font-family: 'Myriad W01 Regular';
 }
 
-#inventory table, th, td{
+table {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+}
+
+table, th, td{
     border-collapse: collapse;
     border: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     text-align: center;
 }
 
-#inventory td, th {
+td, th {
     vertical-align: middle;
     width: 25%;
 }
 
-#inventory tr:hover td{
+#issues td, th {
+    vertical-align: middle;
+    width: 20%;
+}
+
+tr:hover td{
         background-color: #c2e189;
     }
-#inventory tr:nth-child(even){
+table tr:nth-of-type(even) {
     background-color: #C3D0DB;
 }
-#inventory th{
+
+table tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+th{
     text-align: center;
     background-color: #789d4a;
     color: white;
@@ -56,4 +74,25 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+#index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100% !important;
+}
+
+#index-header h1 {
+    margin: 0;
+}
+
+#index-header input {
+    margin: 0;
+    width: 400px;
+    height: 40px;
+    background-image: url('/css/magnifying-glass-solid.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 50px;
 }

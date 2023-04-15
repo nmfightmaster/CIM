@@ -31,7 +31,7 @@ namespace CIM.Pages
 
         [BindProperty]
         public Device Device { get; set; } = new Device();
-
+        public string[] statusTypes = new[] { "Imaged","Needs Imaged","Dell Repair In Process" };
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

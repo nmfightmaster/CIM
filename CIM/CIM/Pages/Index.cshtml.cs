@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CIM.Data;
 using CIM.Models;
+using SQLitePCL;
 
 namespace CIM.Pages
 {
@@ -19,12 +20,14 @@ namespace CIM.Pages
             _context = context;
         }
 
+        public string[] statusTypes = Array.Empty<string>();
         public IList<Device> Device { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
             if (_context.Devices != null)
             {
+                statusTypes = _context.Devices.Select(x => x.Status).Distinct().ToArray();
                 Device = await _context.Devices.ToListAsync();
             }
         }

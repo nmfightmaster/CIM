@@ -2,47 +2,61 @@
 @model CIM.Pages.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inventory Devices";
 }
+<div id="index-header">
+    <h1>All Inventoried Devices</h1>
+    <input type="text" id="deviceSearch" onkeyup="searchTables()" placeholder="Search Inventory">
+    <h1><a asp-page="\Devices\Create">Add New Device</a></h1>
+</div>
 
-<h1>Index</h1>
+<hr>
 
-<p>
-    <a asp-page="\Devices\Create">Create New</a>
-</p>
-<table id="inventory">
-    <thead>
-        <tr>
-            <th onclick="sortTable(0)">
-                @Html.DisplayNameFor(model => model.Device[0].Name)
-            </th>
-            <th onclick="sortTable(1)">
-                @Html.DisplayNameFor(model => model.Device[0].ServiceTag)
-            </th>           
-            <th onclick="sortTable(2)">
-                @Html.DisplayNameFor(model => model.Device[0].Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Device) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServiceTag)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-page="./Devices/Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Devices/Details" asp-route-name="@item.Name">Details</a> |
-                <a asp-page="./Devices/Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@foreach (var status in Model.statusTypes) {
+    <div id="@status-table-container">
+        <h5>Device Status: @status</h5>
+        <table id=@status>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">
+                        @Html.DisplayNameFor(model => model.Device[0].Name)
+                    </th>
+                    <th onclick="sortTable(1)">
+                        @Html.DisplayNameFor(model => model.Device[0].ServiceTag)
+                    </th>
+                    <th onclick="sortTable(2)">
+                        @Html.DisplayNameFor(model => model.Device[0].Status)
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Device)
+                {
+                    @if (item.Status == status)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ServiceTag)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                <a asp-page="./Devices/Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-page="./Devices/Details" asp-route-name="@item.Name">Details</a> |
+                                <a asp-page="./Devices/Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <hr>
+    </div>
 }
-    </tbody>
-</table>

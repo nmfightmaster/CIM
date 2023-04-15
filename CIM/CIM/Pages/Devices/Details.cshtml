@@ -49,7 +49,7 @@
 
 @if (Model.Device.PreviousIssues.Count >= 1)
 {
-    <table id="inventory">
+    <table id="issues">
         <thead>
             <tr>
                 <th onclick="sortTable(0)">Type</th>
@@ -68,7 +68,7 @@
                     <td>@issue.IssueDate</td>
                     <td>@issue.Technician</td>
                     <td>
-                        <a asp-page="/PreviousIssues/Edit" asp-route-id="@issue.Id">Edit</a>
+                        <a asp-page="/PreviousIssues/Edit" asp-route-id="@issue.Id">Edit</a> |
                         <a asp-page="/PreviousIssues/Delete" asp-route-id="@issue.Id">Delete</a>                        
                     </td>
                 </tr>
