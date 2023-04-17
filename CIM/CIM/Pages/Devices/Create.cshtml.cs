@@ -48,6 +48,8 @@ namespace CIM.Pages
                 ModelState.AddModelError("", "A device with the same name already exists.");
                 return Page();
             }
+            Device.ServiceTag = Device.ServiceTag.ToUpper();
+            Device.Name = Device.Name.ToUpper();
             _context.Devices.Add(Device);
             await _context.SaveChangesAsync();
             return RedirectToPage("../Index");
