@@ -17,7 +17,7 @@ namespace CIM.Pages
     {
         private readonly CIM.Data.CIMContext _context;
         private readonly IDellService _dellService;
-
+        public string DeviceWarranty;
         public DetailsModel(CIM.Data.CIMContext context, IDellService dellService)
         {
             _context = context;
@@ -41,6 +41,8 @@ namespace CIM.Pages
             {
                 Device = device;
             }
+            _dellService.Device = device;
+            DeviceWarranty = await _dellService.GetDataAsync();
             return Page();
         }
 

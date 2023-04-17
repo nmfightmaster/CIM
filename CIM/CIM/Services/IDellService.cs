@@ -3,6 +3,7 @@ namespace CIM.Services
 {
     public interface IDellService
     {
-        Task<ApiResponse> GetDataAsync();
+        Task<string> GetDataAsync();
+        Device Device { get; set;}
     }
 }

@@ -14,6 +14,11 @@ builder.Services.AddScoped<IDeviceService, DeviceService>()
     .AddScoped<IPIService, PIService>()
     .AddScoped<IDellService, DellService>();
 
+var baseAddress = Environment.GetEnvironmentVariable("ExternalApi: BaseUrl");
+builder.Services.AddHttpClient("Dell", s =>
+{
+    s.BaseAddress = new Uri(baseAddress);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
