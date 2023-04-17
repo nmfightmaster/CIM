@@ -16,10 +16,12 @@ namespace CIM.Pages
     public class DetailsModel : PageModel
     {
         private readonly CIM.Data.CIMContext _context;
+        private readonly IDellService _dellService;
 
-        public DetailsModel(CIM.Data.CIMContext context)
+        public DetailsModel(CIM.Data.CIMContext context, IDellService dellService)
         {
             _context = context;
+            _dellService = dellService;
         }
         public Device Device { get; set; } = default!;
 

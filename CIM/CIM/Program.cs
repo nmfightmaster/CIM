@@ -11,7 +11,8 @@ builder.Services.AddDbContext<CIMContext>(options =>
         ("CIMContext"));
 });
 builder.Services.AddScoped<IDeviceService, DeviceService>()
-    .AddScoped<IPIService, PIService>();
+    .AddScoped<IPIService, PIService>()
+    .AddScoped<IDellService, DellService>();
 
 var app = builder.Build();
 
