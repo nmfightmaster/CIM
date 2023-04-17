@@ -14,7 +14,7 @@
 
 @foreach (var status in Model.statusTypes) {
     <div id="@status-table-container">
-        <h5>Device Status: @status</h5>
+        <h5>Device Status: @status (@Model.Device.Count(d => d.Status == status))</h5>
         <table id=@status>
             <thead>
                 <tr>
