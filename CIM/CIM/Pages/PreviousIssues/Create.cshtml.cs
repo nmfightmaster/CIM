@@ -25,13 +25,14 @@ namespace CIM.Pages.PreviousIssues
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int id)
         {
+            this.id = id;
             return Page();
-        }  
+        }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid || PreviousIssue == null)
             {

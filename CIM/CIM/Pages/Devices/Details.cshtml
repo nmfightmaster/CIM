@@ -1,11 +1,11 @@
-﻿@page "{name}"
+﻿@page "{id:int}"
 @model CIM.Pages.DetailsModel
 
 @{
     ViewData["Title"] = Model.Device.Name;
 }
 
-<h1>@Model.Device.Name</h1>
+<h1>@Model.Device.Name - <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a></h1>
 
 <div>
     <h4>Device Info:</h4>
@@ -48,7 +48,7 @@
             @Model.DeviceWarranty
         </dd>
     </dl>
-    <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a>
+    
 </div>
 
 <h2><a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h2>

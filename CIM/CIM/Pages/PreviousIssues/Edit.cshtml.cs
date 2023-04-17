@@ -22,6 +22,7 @@ namespace CIM.Pages.PreviousIssues
 
         [BindProperty]
         public PreviousIssue PreviousIssue { get; set; } = default!;
+        
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,13 +31,14 @@ namespace CIM.Pages.PreviousIssues
                 return NotFound();
             }
 
-            var previousissue =  await _context.PreviousIssues.FirstOrDefaultAsync(m => m.Id == id);
+            var previousissue =  await _context.PreviousIssues
+                .Include(p => p.Device)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (previousissue == null)
             {
                 return NotFound();
             }
             PreviousIssue = previousissue;
-           ViewData["DeviceId"] = new SelectList(_context.Devices, "Id", "Id");
             return Page();
         }
 
@@ -66,8 +68,7 @@ namespace CIM.Pages.PreviousIssues
                     throw;
                 }
             }
-
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Devices/Details", new { id = PreviousIssue.DeviceId });
         }
 
         private bool PreviousIssueExists(int id)

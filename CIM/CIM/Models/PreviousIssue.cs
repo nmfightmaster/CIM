@@ -14,6 +14,6 @@ namespace CIM.Models
         [DisplayName("Date Logged")]
         public string? IssueDate { get; set; } = DateTime.Now.ToString("MM/dd/yyyy");
         public int? DeviceId { get; set; }
-        public Device? Device { get; set; }
+        public virtual Device? Device { get; set; }
     }
 }

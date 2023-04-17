@@ -70,7 +70,7 @@ namespace CIM.Pages
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Devices/Details", new { id = Device.Id });
         }
 
         private bool DeviceExists(int id)

@@ -14,6 +14,7 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="PreviousIssue.Id" />
+            <input type="hidden" asp-for="PreviousIssue.DeviceId" />
             <div class="form-group">
                 <label asp-for="PreviousIssue.IssueType" class="control-label"></label>
                 <input asp-for="PreviousIssue.IssueType" class="form-control" />
@@ -42,7 +43,7 @@
 </div>
 
 <div>
-    <a asp-page="/Devices/Details" asp-route-id="@Model.PreviousIssue.DeviceId">Back to List</a>
+    <a asp-page="/Devices/Details" asp-route-id=@Model.PreviousIssue.DeviceId>Back to List</a>
 </div>
 
 @section Scripts {
