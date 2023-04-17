@@ -9,6 +9,10 @@ namespace CIM.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Device> builder)
         {
+            builder.HasMany(d => d.PreviousIssues)
+               .WithOne(pi => pi.Device)
+               .HasForeignKey(pi => pi.DeviceId)
+               .OnDelete(DeleteBehavior.Cascade);
             builder.Property(x => x.Name)
                 .HasMaxLength(9);
             builder.Property(x => x.ServiceTag)

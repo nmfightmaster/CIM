@@ -48,7 +48,8 @@ namespace CIM.Pages
             {
                 return NotFound();
             }
-            var device = await _context.Devices.FindAsync(id);
+            var device = _context.Devices.Include(d => d.PreviousIssues).FirstOrDefault(d => d.Id == id);
+                
 
             if (device != null)
             {
