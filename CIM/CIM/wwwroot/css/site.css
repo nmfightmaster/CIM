@@ -96,3 +96,7 @@ a:hover {
     background-position: left center;
     padding-left: 50px;
 }
+
+#deleted button {
+    color: red;
+}
