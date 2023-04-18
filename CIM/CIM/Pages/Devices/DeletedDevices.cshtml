@@ -1,0 +1,40 @@
+﻿@page
+@model CIM.Pages.Devices.DeletedDevicesModel
+
+@{
+    ViewData["Title"] = "Deleted Devices";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model.Devices.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Device ID</th>
+                <th>Device Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var device in Model.Devices)
+            {
+                <tr>
+                    <td>@device.Id</td>
+                    <td>@device.Name</td>
+                    <td>
+                        <form method="post">
+                            <input type="hidden" name="id" value="@device.Id" />
+                            <button type="submit" class="btn btn-primary">Restore</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No deleted devices found.</p>
+}

@@ -28,7 +28,7 @@ namespace CIM.Pages
             if (_context.Devices != null)
             {
                 statusTypes = _context.Devices.Select(x => x.Status).Distinct().ToArray();
-                Device = await _context.Devices.ToListAsync();
+                Device = await _context.Devices.Where(d => !d.IsDeleted).ToListAsync();
             }
         }
     }

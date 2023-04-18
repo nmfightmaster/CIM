@@ -42,22 +42,32 @@ namespace CIM.Pages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int? id, bool? restore)
         {
-            if (id == null || _context.Devices == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var device = _context.Devices.Include(d => d.PreviousIssues).FirstOrDefault(d => d.Id == id);
-                
 
-            if (device != null)
+            var device = await _context.Devices.FindAsync(id);
+
+            if (device == null)
             {
-                Device = device;
-                _context.Devices.Remove(Device);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
 
+            if (restore != true)
+            {
+                device.IsDeleted = true;
+                device.DeletedAt = DateTime.Now;
+            }
+            else
+            {
+                device.IsDeleted = false;
+                device.DeletedAt = null;
+            }
+            _context.Devices.Update(device);
+            await _context.SaveChangesAsync();
             return RedirectToPage("../Index");
         }
     }
