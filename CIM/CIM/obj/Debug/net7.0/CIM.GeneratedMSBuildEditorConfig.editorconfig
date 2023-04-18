@@ -24,8 +24,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM/CIM/Pages/Devices/DeletedDevices.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZWxldGVkRGV2aWNlcy5jc2h0bWw=
+[L:/CIM/CIM/CIM/Pages/Devices/Deleted.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZWxldGVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [L:/CIM/CIM/CIM/Pages/Devices/Details.cshtml]

@@ -10,11 +10,11 @@ using CIM.Models;
 
 namespace CIM.Pages.Devices
 {
-    public class DeletedDevicesModel : PageModel
+    public class DeletedModel : PageModel
     {
         private readonly CIM.Data.CIMContext _context;
 
-        public DeletedDevicesModel(CIM.Data.CIMContext context)
+        public DeletedModel(CIM.Data.CIMContext context)
         {
             _context = context;
         }
@@ -35,7 +35,7 @@ namespace CIM.Pages.Devices
             device.IsDeleted = false;
             device.DeletedAt = null;
             await _context.SaveChangesAsync();
-            return RedirectToPage("./DeletedDevices");
+            return RedirectToPage("../Index");
         }
     }
 }

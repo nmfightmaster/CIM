@@ -5,7 +5,7 @@
     ViewData["Title"] = "Inventory Devices";
 }
 <div id="index-header">
-    <h1>All Inventoried Devices</h1>
+    <h1>Device Inventory</h1>
     <input type="text" id="deviceSearch" onkeyup="searchTables()" placeholder="Search Inventory">
     <h1><a asp-page="\Devices\Create">Add New Device</a></h1>
 </div>
@@ -14,7 +14,7 @@
 
 @foreach (var status in Model.statusTypes) {
     <div id="@status-table-container">
-        <h5>Device Status: @status (@Model.Device.Count(d => d.Status == status))</h5>
+        <h5>Status: @status (@Model.Device.Count(d => d.Status == status))</h5>
         <table id=@status>
             <thead>
                 <tr>
