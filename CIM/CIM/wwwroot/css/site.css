@@ -83,20 +83,26 @@ a:hover {
     max-width: 100% !important;
 }
 
-#index-header h1 {
-    margin: 0;
+
+
+.input-group {
+    width: 40%;
 }
 
-#index-header input {
-    margin: 0;
-    width: 400px;
-    height: 40px;
-    background-image: url('/css/magnifying-glass-solid.svg');
-    background-repeat: no-repeat;
-    background-position: left center;
-    padding-left: 50px;
+#deviceSearch {
+    background: url(/fontawesome/svgs/solid/search.svg) no-repeat;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    left: -30px;
 }
 
-#deleted button {
-    color: red;
+#index-header input[type="text"] {
+  margin: 0 0 0 60px;
+  height: 40px;
+}
+
+.delete-column {
+    width: 1%;
 }

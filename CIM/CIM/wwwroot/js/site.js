@@ -40,63 +40,41 @@ function sortTable(n) {
 }
 
 function searchTables() {
-    var input, filter, table, tr, td, i, j, txtValue;
-    input = document.getElementById("deviceSearch");
-    filter = input.value.toUpperCase();
-    var visibleRowCount = 0; // initialize visible row count to zero
+    // Get the search input and table elements
+    var searchInput = document.getElementById("deviceSearch");
     var tables = document.getElementsByTagName("table");
-    for (var k = 0; k < tables.length; k++) {
-        table = tables[k];
-        tr = table.getElementsByTagName("tr");
-        var tableHasMatch = false; // initialize table match flag to false
-        for (i = 0; i < tr.length; i++) {
-            if (i === 0) { // header row
-                continue;
-            }
-            var display = false; // set display flag for each row
-            for (j = 0; j < 3; j++) { // search first three columns
-                td = tr[i].getElementsByTagName("td")[j];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        display = true; // if match found in any of the three columns, set display flag to true
-                        tableHasMatch = true; // set table match flag to true
-                    }
+
+    // Loop through each table
+    for (var i = 0; i < tables.length; i++) {
+        var table = tables[i];
+        var rows = table.getElementsByTagName("tr");
+
+        // Loop through each row in the table
+        for (var j = 1; j < rows.length; j++) { // Start from index 1 to exclude the header row
+            var row = rows[j];
+            var cols = row.getElementsByTagName("td");
+            var found = false;
+
+            // Loop through each column in the row
+            for (var k = 0; k < cols.length; k++) {
+                var col = cols[k];
+                var text = col.textContent || col.innerText;
+
+                // Check if the column text contains the search input text
+                if (text.toLowerCase().indexOf(searchInput.value.toLowerCase()) > -1) {
+                    found = true;
+                    break;
                 }
             }
-            if (display) {
-                tr[i].style.display = ""; // show row if display flag is true
-                visibleRowCount++; // increment visible row count
-            } else {
-                tr[i].style.display = "none"; // hide row if display flag is false
-                tr[i].style.backgroundColor = ""; // reset row color for hidden rows
-            }
-        }
-        // Show or hide header based on tableHasMatch flag
-        var headerRow = tr[0];
-        var tableTitle = table.previousElementSibling; // get previous sibling element of table
-        var hr = table.nextElementSibling; // get next sibling element of tableTitle (assuming it's the <hr>)
-        if (tableHasMatch) {
-            headerRow.style.display = "";
-            if (tableTitle.tagName == "H5") { // hide title if it exists and no rows are displayed in table
-                tableTitle.style.display = "";
-                hr.style.display = "";
-            }
-        } else {
-            headerRow.style.display = "none";
-            if (tableTitle.tagName == "H5") { // hide title if it exists and no rows are displayed in table
-                tableTitle.style.display = "none";
-                hr.style.display = "none";
-            }
-        }
-    }
-    var noResults = document.getElementById("noResults");
-    if (visibleRowCount === 0) {
-        noResults.style.display = "";
-    } else {
-        noResults.style.display = "none";
-    }
 
+            // Toggle the row visibility based on whether it matched the search input
+            if (found) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        }
+    }
 }
 
 

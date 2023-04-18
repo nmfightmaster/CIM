@@ -35,7 +35,7 @@ namespace CIM.Pages.Devices
             device.IsDeleted = false;
             device.DeletedAt = null;
             await _context.SaveChangesAsync();
-            return RedirectToPage("../Index");
+            return RedirectToPage();
         }
     }
 }
