@@ -30,6 +30,6 @@ namespace CIM.Pages
                 statusTypes = _context.Devices.Select(x => x.Status).Where(x => x != "Deployed").Distinct().ToArray();
                 Device = await _context.Devices.Where(d => !d.IsDeleted && !d.IsDeployed).ToListAsync();
             }
-        }
+        }  
     }
 }

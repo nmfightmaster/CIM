@@ -1,5 +1,6 @@
 ﻿using CIM.Models;
 using System.DirectoryServices;
+using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 
 namespace CIM.Services
@@ -24,6 +25,23 @@ namespace CIM.Services
             {
                 using (DirectorySearcher ldapSearch = new DirectorySearcher(directoryEntry))
                 {
+                    // Check if the LDAP server is online
+                    bool isServerOnline = false;
+                    try
+                    {
+                        Ping ping = new Ping();
+                        PingReply reply = ping.Send(new Uri(_ldapPath).Host);
+                        isServerOnline = reply.Status == IPStatus.Success;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception
+                    }
+                    if (!isServerOnline)
+                    {
+                        // Handle the error appropriately
+                        return "LDAP server is offline. Are you on the CHAS network?";
+                    }
                     ldapSearch.Filter = $"(&(objectClass=computer)(cn={deviceName}))";
                     ldapSearch.SearchScope = SearchScope.Subtree;
                     SearchResult searchResult = ldapSearch.FindOne();

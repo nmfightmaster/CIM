@@ -50,6 +50,5 @@ namespace CIM.Pages
             Device.OU = await _ldapService.GetOUAsync(Device.Name);
             return Page();
         }
-
     }
 }
