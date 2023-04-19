@@ -12,7 +12,8 @@ builder.Services.AddDbContext<CIMContext>(options =>
 });
 builder.Services.AddScoped<IDeviceService, DeviceService>()
     .AddScoped<IPIService, PIService>()
-    .AddScoped<IDellService, DellService>();
+    .AddScoped<IDellService, DellService>()
+    .AddScoped<ILDAPService, LDAPService>();
 
 var baseAddress = Environment.GetEnvironmentVariable("ExternalApi: BaseUrl");
 builder.Services.AddHttpClient("Dell", s =>

@@ -10,6 +10,8 @@ using CIM.Models;
 using System.Collections;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using CIM.Services;
+using System.DirectoryServices;
+using System.Text.RegularExpressions;
 
 namespace CIM.Pages
 {
@@ -17,11 +19,13 @@ namespace CIM.Pages
     {
         private readonly CIM.Data.CIMContext _context;
         private readonly IDellService _dellService;
+        private readonly ILDAPService _ldapService;
         public string DeviceWarranty;
-        public DetailsModel(CIM.Data.CIMContext context, IDellService dellService)
+        public DetailsModel(CIM.Data.CIMContext context, IDellService dellService, ILDAPService ldapService)
         {
             _context = context;
             _dellService = dellService;
+            _ldapService = ldapService;
         }
         public Device Device { get; set; } = default!;
 
@@ -43,6 +47,7 @@ namespace CIM.Pages
             }
             _dellService.Device = device;
             DeviceWarranty = await _dellService.GetDataAsync();
+            Device.OU = await _ldapService.GetOUAsync(Device.Name);
             return Page();
         }
 

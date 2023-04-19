@@ -50,6 +50,7 @@ function searchTables() {
         var rows = table.getElementsByTagName("tr");
 
         // Loop through each row in the table
+        var visibleRowCount = 0;
         for (var j = 1; j < rows.length; j++) { // Start from index 1 to exclude the header row
             var row = rows[j];
             var cols = row.getElementsByTagName("td");
@@ -70,8 +71,15 @@ function searchTables() {
             // Toggle the row visibility based on whether it matched the search input
             if (found) {
                 row.style.display = "";
+                visibleRowCount++;
             } else {
                 row.style.display = "none";
+            }
+            // Update the row count for the current status
+            var status = table.id;
+            var rowCountSpan = document.getElementById(status + "-count");
+            if (rowCountSpan) {
+                rowCountSpan.textContent = visibleRowCount;
             }
         }
     }

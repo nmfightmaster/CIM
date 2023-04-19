@@ -29,6 +29,9 @@ namespace CIM.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("IsDeployed")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(9)
@@ -58,6 +61,7 @@ namespace CIM.Migrations
                         {
                             Id = 1,
                             IsDeleted = false,
+                            IsDeployed = false,
                             Name = "CHASTEST",
                             OU = "\\chas.local\\CLINIC\\DEPT\\",
                             PU = "Biggles T. McClure",
@@ -68,6 +72,7 @@ namespace CIM.Migrations
                         {
                             Id = 2,
                             IsDeleted = false,
+                            IsDeployed = false,
                             Name = "CHASTEST2",
                             OU = "\\chas.local\\CLINIC2\\DEPT2\\",
                             PU = "Bo 'Bobo' BoBoBo",
@@ -78,6 +83,7 @@ namespace CIM.Migrations
                         {
                             Id = 3,
                             IsDeleted = false,
+                            IsDeployed = false,
                             Name = "CHASTEST3",
                             OU = "\\chas.local\\CLINIC3\\DEPT3\\",
                             PU = "Hugh Mungus",
@@ -118,7 +124,7 @@ namespace CIM.Migrations
                         {
                             Id = 1,
                             DeviceId = 1,
-                            IssueDate = "04/17/2023",
+                            IssueDate = "04/18/2023",
                             IssueDetails = "Screen Cracked",
                             IssueType = "Hardware",
                             Technician = "Bobo"
@@ -127,7 +133,7 @@ namespace CIM.Migrations
                         {
                             Id = 2,
                             DeviceId = 1,
-                            IssueDate = "04/17/2023",
+                            IssueDate = "04/18/2023",
                             IssueDetails = "Blue Screen",
                             IssueType = "Software",
                             Technician = "Bobo"
@@ -136,7 +142,7 @@ namespace CIM.Migrations
                         {
                             Id = 3,
                             DeviceId = 2,
-                            IssueDate = "04/17/2023",
+                            IssueDate = "04/18/2023",
                             IssueDetails = "Screen Cracked2",
                             IssueType = "Hardware",
                             Technician = "Bibi"
@@ -145,7 +151,7 @@ namespace CIM.Migrations
                         {
                             Id = 4,
                             DeviceId = 2,
-                            IssueDate = "04/17/2023",
+                            IssueDate = "04/18/2023",
                             IssueDetails = "Blue Screen2",
                             IssueType = "Software",
                             Technician = "Bibi"
@@ -154,7 +160,7 @@ namespace CIM.Migrations
                         {
                             Id = 5,
                             DeviceId = 3,
-                            IssueDate = "04/17/2023",
+                            IssueDate = "04/18/2023",
                             IssueDetails = "Screen Cracked3",
                             IssueType = "Hardware",
                             Technician = "Baba"
@@ -163,7 +169,7 @@ namespace CIM.Migrations
                         {
                             Id = 6,
                             DeviceId = 3,
-                            IssueDate = "04/17/2023",
+                            IssueDate = "04/18/2023",
                             IssueDetails = "Blue Screen3",
                             IssueType = "Software",
                             Technician = "Baba"

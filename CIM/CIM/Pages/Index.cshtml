@@ -17,10 +17,11 @@
 
 @foreach (var status in Model.statusTypes)
 {
-    <div id="@status-table-container">
-        <h5>Status: @status (@Model.Device.Count(d => d.Status == status))</h5>
+    var tableId = status.Replace(" ", "_");
+    <div id="@tableId-table-container">
+        <h5>Status: @status (<span id="@tableId-count">@Model.Device.Count(d => d.Status == status)</span>)</h5>
         <div class="table-container">
-            <table id=@status>
+            <table id="@tableId">
                 <thead>
                     <tr>
                         <th onclick="sortTable(0)">
@@ -37,11 +38,11 @@
                     {
                         @if (item.Status == status)
                         {
-                            <tr onclick="location.href='@Url.Page("./Devices/Details", new { id = item.Id })'">
-                                <td>
+                            <tr>
+                                <td onclick="location.href='@Url.Page("./Devices/Details", new { id = item.Id })'">
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
-                                <td>
+                                <td onclick="location.href='@Url.Page("./Devices/Details", new { id = item.Id })'">
                                     @Html.DisplayFor(modelItem => item.ServiceTag)
                                 </td>
                                 <td class="delete-column">

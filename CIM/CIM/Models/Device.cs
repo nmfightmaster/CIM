@@ -9,6 +9,7 @@ namespace CIM.Models
     {   
         public int Id { get; set; }
         public bool IsDeleted { get; set; } = false;
+        public bool IsDeployed { get; set; } = false;
         public DateTime? DeletedAt { get; set; } = null;
         [DisplayName("Device Name")]
         public string Name { get; set; }
