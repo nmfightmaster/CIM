@@ -9,65 +9,65 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CIM
 build_property.RootNamespace = CIM
-build_property.ProjectDir = C:\Users\Nathan\Documents\CIM\CIM\CIM\
+build_property.ProjectDir = C:\Users\Beep Boop\Documents\CIM\CIM\CIM\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Nathan\Documents\CIM\CIM\CIM
+build_property.MSBuildProjectDirectory = C:\Users\Beep Boop\Documents\CIM\CIM\CIM
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/Devices/Create.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/Devices/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/Devices/Delete.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/Devices/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/Devices/Deleted.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/Devices/Deleted.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZWxldGVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/Devices/Details.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/Devices/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/Devices/Edit.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/Devices/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/Error.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/Index.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/PreviousIssues/Create.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/PreviousIssues/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJldmlvdXNJc3N1ZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/PreviousIssues/Delete.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/PreviousIssues/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJldmlvdXNJc3N1ZXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/PreviousIssues/Edit.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/PreviousIssues/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJldmlvdXNJc3N1ZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/_ViewImports.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/_ViewStart.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nathan/Documents/CIM/CIM/CIM/Pages/Shared/_Layout.cshtml]
+[C:/Users/Beep Boop/Documents/CIM/CIM/CIM/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-qa8fdv0ogj

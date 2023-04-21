@@ -7,52 +7,52 @@
 
 <h1>@Model.Device.Name - <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a></h1>
 
-<div>
+<div id="details">
     <h4>Device Info:</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Device.Name):
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Device.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Device.ServiceTag):
-        </dt>
-        <dd class="col-sm-10">
-            <a href='@string.Format("https://www.dell.com/support/home/en-us/product-support/servicetag/{0}/overview", Model.Device.ServiceTag)'>@Model.Device.ServiceTag</a>
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Device.OU):
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Device.OU)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Device.PU):
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Device.PU)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Device.Status):
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Device.Status)
-        </dd>
-        <dt class="col-sm-2">
-            Warranty Expiration:
-        </dt>
-        <dd class="col-sm-10">
-            @Model.DeviceWarranty
-        </dd>
-    </dl>
+    <h4>Imaging Process Checklist:</h4>
+    <hr/>
+</div>
+<div style="clear: both;">
+    <table id="deviceDetails">
+        <tbody>
+            <tr>
+                <th><i class="fas fa-desktop"></i>  @Html.DisplayNameFor(model => model.Device.Name)</th>
+                <td>@Html.DisplayFor(model => model.Device.Name)</td>
+            </tr>
+            <tr>
+                <th><i class="fas fa-tag fa-fw"></i>    @Html.DisplayNameFor(model => model.Device.ServiceTag)</th>
+                <td><a href='@string.Format("https://www.dell.com/support/home/en-us/product-support/servicetag/{0}/overview", Model.Device.ServiceTag)'><i class="fas fa-external-link-alt fa-fw"></i>@Model.Device.ServiceTag</a></td>
+            </tr>
+            <tr>
+                <th><i class="fas fa-building fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.OU)</th>
+                <td>@Html.DisplayFor(model => model.Device.OU)</td>
+            </tr>
+            <tr>
+                <th><i class="fas fa-user fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.PU)</th>
+                <td>@Html.DisplayFor(model => model.Device.PU)</td>
+            </tr>
+            <tr>
+                <th><i class="fas fa-exclamation-triangle fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.Status)</th>
+                <td>@Html.DisplayFor(model => model.Device.Status)</td>
+            </tr>
+            <tr>
+                <th><i class="fas fa-calendar-day fa-fw"></i>   Warranty Expiration</th>
+                <td>@Model.DeviceWarranty</td>
+            </tr>
+        </tbody>
+    </table>
+    <form id="imageChecklist">
+        <ul>
+            @foreach (string step in Model.imagingSteps)
+            {
+                <li><input type="checkbox" id="@(step)box" /><label for="@(step)box">@step</label></li>
+            }
+        </ul>
+    </form> 
     
 </div>
-
-<h2><a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h2>
-
+<div>
+    <h2><a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h2>
 @if (Model.Device.PreviousIssues.Count >= 1)
 {
     <table id="issues">
@@ -82,6 +82,7 @@
         </tbody>
     </table>
 }
-<div>
+
+
     <a asp-page="../Index">Back to List</a>
 </div>

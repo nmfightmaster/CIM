@@ -48,7 +48,7 @@ td, th {
     width: 20%;
 }
 
-tr:hover td{
+tr:hover td :not(#deviceDetails){
         background-color: #c2e189;
     }
 table tr:nth-of-type(even) {
@@ -72,7 +72,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+a:hover :not(#deviceDetails){
     text-decoration: underline;
 }
 
@@ -105,4 +105,31 @@ a:hover {
 
 .delete-column {
     width: 1%;
+}
+
+#deviceDetails {
+    float: left;
+    width: 50%;
+}
+
+#deviceDetails th {
+    width: 8%;
+    text-align: left;
+}
+
+#deviceDetails td {
+    text-align: left;
+}
+
+#imageChecklist {
+    height: 190px ;
+    float: right;
+}
+
+#details h4:first-of-type {
+    float: left;
+}
+
+#details h4:last-of-type {
+    float: right;
 }

@@ -28,7 +28,7 @@ namespace CIM.Pages
             _ldapService = ldapService;
         }
         public Device Device { get; set; } = default!;
-
+        public string[] imagingSteps { get; set; } = new string[] { "Imaging Script Ran" , "Computer Renamed" , "Dell Command Ran" , "Windows Updates Performed"};
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.Devices == null)

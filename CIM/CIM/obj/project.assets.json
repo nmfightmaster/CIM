@@ -11270,19 +11270,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nathan\\.nuget\\packages\\": {}
+    "C:\\Users\\Beep Boop\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nathan\\Documents\\CIM\\CIM\\CIM\\CIM.csproj",
+      "projectUniqueName": "C:\\Users\\Beep Boop\\Documents\\CIM\\CIM\\CIM\\CIM.csproj",
       "projectName": "CIM",
-      "projectPath": "C:\\Users\\Nathan\\Documents\\CIM\\CIM\\CIM\\CIM.csproj",
-      "packagesPath": "C:\\Users\\Nathan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nathan\\Documents\\CIM\\CIM\\CIM\\obj\\",
+      "projectPath": "C:\\Users\\Beep Boop\\Documents\\CIM\\CIM\\CIM\\CIM.csproj",
+      "packagesPath": "C:\\Users\\Beep Boop\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Beep Boop\\Documents\\CIM\\CIM\\CIM\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Nathan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Beep Boop\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
