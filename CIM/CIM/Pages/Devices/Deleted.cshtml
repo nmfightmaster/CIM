@@ -29,6 +29,12 @@
                             <button type="submit" class="btn btn-primary">Restore</button>
                         </form>
                     </td>
+                    <td>
+                        <form method="post" asp-page="/Devices/PermaDelete" asp-route-id=@device.Id>
+                            <input type="hidden" name="id" value="@device.Id" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>

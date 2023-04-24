@@ -9,7 +9,10 @@
 
 <div id="details">
     <h4>Device Info:</h4>
-    <h4>Imaging Process Checklist:</h4>
+    @if (Model.Device.Status != "Imaged")
+    {
+        <h4>Imaging Process Checklist:</h4>
+    }
     <hr/>
 </div>
 <div style="clear: both;">
@@ -41,18 +44,35 @@
             </tr>
         </tbody>
     </table>
-    <form id="imageChecklist">
-        <ul>
-            @foreach (string step in Model.imagingSteps)
+    <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false">
+            <input type="hidden" name="id" value="@Model.Device.Id" id="deviceId"/>
+            @if (Model.Device.Status != "Imaged")
             {
-                <li><input type="checkbox" id="@(step)box" /><label for="@(step)box">@step</label></li>
+                @for (int i = 0; i < 4; i++)
+                {
+                @if (Model.Device.ImagingStep[i])
+                {
+                    <input type="checkbox" id="@(i)" checked/>
+                } else
+                {
+                    <input type="checkbox" id="@(i)"/>
+                }
+
+
+                    <label for="@(i)box">@Model.imagingSteps[i]</label>
+
+                    <br />
+                }
+                <button id="submitBtn" disabled>Submit</button>
+            } else
+            {
+                <button id="submitBtn">Device Needs Imaged</button>
             }
-        </ul>
-    </form> 
+        </form> 
     
 </div>
 <div>
-    <h2><a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h2>
+    <h2 style="clear: both;"><a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h2>
 @if (Model.Device.PreviousIssues.Count >= 1)
 {
     <table id="issues">
@@ -86,3 +106,38 @@
 
     <a asp-page="../Index">Back to List</a>
 </div>
+
+<script>
+    // Get all checkboxes
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    // Get the submit button
+    const submitBtn = document.getElementById('submitBtn');
+
+
+    var deviceId = document.getElementById('deviceId').value;
+    // Add a change event listener to each checkbox
+    checkboxes.forEach((checkbox, index) => {
+        checkbox.addEventListener('change', () => {
+            $.ajax({
+                type: 'POST',
+                url: `?handler=Step`,
+                data: { 
+                    isChecked: checkboxes[index].checked,
+                    id: deviceId,
+                    step: checkboxes[index].id
+                },
+                success: function () {
+                    console.log('The step has been updated successfully.');
+                },
+                error: function (xhr, status, error) {
+                    console.error('An error occurred while updating the step:', error);
+                }
+            });
+            // Check if all checkboxes are checked
+            const allChecked = Array.from(checkboxes).every((c) => c.checked);
+            // Enable or disable the submit button accordingly
+            submitBtn.disabled = !allChecked;
+        });
+    });
+</script>

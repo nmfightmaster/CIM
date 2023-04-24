@@ -12,9 +12,13 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using CIM.Services;
 using System.DirectoryServices;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using CIM.Migrations;
 
 namespace CIM.Pages
 {
+    [IgnoreAntiforgeryToken]
     public class DetailsModel : PageModel
     {
         private readonly CIM.Data.CIMContext _context;
@@ -28,7 +32,7 @@ namespace CIM.Pages
             _ldapService = ldapService;
         }
         public Device Device { get; set; } = default!;
-        public string[] imagingSteps { get; set; } = new string[] { "Imaging Script Ran" , "Computer Renamed" , "Dell Command Ran" , "Windows Updates Performed"};
+        public string[] imagingSteps { get; set; } = new string[] { "Imaging Script" , "Computer Renamed" , "Dell Command" , "Windows Updates"};
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.Devices == null)
@@ -48,7 +52,42 @@ namespace CIM.Pages
             _dellService.Device = device;
             DeviceWarranty = await _dellService.GetDataAsync();
             Device.OU = _ldapService.GetOU(Device.Name);
+            Device.ImagingStep = JsonConvert.DeserializeObject<bool[]>(Device.ImagingStepJson);
             return Page();
+        }
+        public async Task<IActionResult> OnPostToggleImage(int id) {
+            Device = await _context.Devices.FirstOrDefaultAsync(d => d.Id == id);
+            if (Device != null)
+            {
+                if (Device.Status == "Imaged")
+                {
+                    Device.Status = "Needs Imaged";
+                    Device.ImagingStep = new bool[4] { false, false, false, false };
+
+                } else
+                {
+                    Device.Status = "Imaged";
+                    Device.ImagingStep = new bool[4] { true, true, true, true };
+                }
+                Device.ImagingStepJson = JsonConvert.SerializeObject(Device.ImagingStep);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToPage("/Devices/Details", new { id = Device.Id }); 
+        }
+
+        public async Task<IActionResult> OnPostStep(bool isChecked, int id, int step)
+        {
+            Device = await _context.Devices.FirstOrDefaultAsync(d => d.Id == id);
+            Device.ImagingStep = JsonConvert.DeserializeObject<bool[]>(Device.ImagingStepJson);
+            if (isChecked) {
+                Device.ImagingStep[step] = true;
+            } else
+            {
+                Device.ImagingStep[step] = false;
+            }
+            Device.ImagingStepJson = JsonConvert.SerializeObject(Device.ImagingStep);
+            await _context.SaveChangesAsync();
+            return RedirectToPage("/Devices/Details", new { id = Device.Id });
         }
     }
 }

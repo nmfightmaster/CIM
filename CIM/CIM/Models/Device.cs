@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Collections;
+using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace CIM.Models
 {
@@ -20,6 +22,9 @@ namespace CIM.Models
         [DisplayName("Primary User")]
         public string? PU { get; set; }
         public string Status { get; set; }
+        [NotMapped]
+        public bool[] ImagingStep { get; set; } = new bool[4] {false, false, false, false};
+        public string ImagingStepJson { get; set; } = JsonConvert.SerializeObject(new bool[4] { false, false, false, false });
         public List<PreviousIssue> PreviousIssues { get; set; } = new List<PreviousIssue>();
 
     }

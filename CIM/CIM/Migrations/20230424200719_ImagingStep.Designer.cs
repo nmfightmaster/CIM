@@ -3,6 +3,7 @@ using System;
 using CIM.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,12 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CIM.Migrations
 {
     [DbContext(typeof(CIMContext))]
-    partial class CIMContextModelSnapshot : ModelSnapshot
+    [Migration("20230424200719_ImagingStep")]
+    partial class ImagingStep
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.4");
 
             modelBuilder.Entity("CIM.Models.Device", b =>
                 {
@@ -26,9 +29,8 @@ namespace CIM.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ImagingStepJson")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ImagingStep")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
@@ -64,7 +66,7 @@ namespace CIM.Migrations
                         new
                         {
                             Id = 1,
-                            ImagingStepJson = "[false,false,false,false]",
+                            ImagingStep = 4,
                             IsDeleted = false,
                             IsDeployed = false,
                             Name = "CHASTEST",
@@ -76,7 +78,7 @@ namespace CIM.Migrations
                         new
                         {
                             Id = 2,
-                            ImagingStepJson = "[false,false,false,false]",
+                            ImagingStep = 4,
                             IsDeleted = false,
                             IsDeployed = false,
                             Name = "CHASTEST2",
@@ -88,7 +90,7 @@ namespace CIM.Migrations
                         new
                         {
                             Id = 3,
-                            ImagingStepJson = "[false,false,false,false]",
+                            ImagingStep = 4,
                             IsDeleted = false,
                             IsDeployed = false,
                             Name = "CHASTEST3",

@@ -124,12 +124,10 @@ a:hover:not(#deviceDetails){
 #imageChecklist {
     height: 190px ;
     float: right;
+    margin-right: 250px;
 }
 
-#details h4:first-of-type {
-    float: left;
-}
-
-#details h4:last-of-type {
-    float: right;
+#details h4 {
+    display: inline-block;
+    padding-inline: 220px;
 }

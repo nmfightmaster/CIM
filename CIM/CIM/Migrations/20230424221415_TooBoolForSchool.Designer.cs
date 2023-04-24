@@ -3,6 +3,7 @@ using System;
 using CIM.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CIM.Migrations
 {
     [DbContext(typeof(CIMContext))]
-    partial class CIMContextModelSnapshot : ModelSnapshot
+    [Migration("20230424221415_TooBoolForSchool")]
+    partial class TooBoolForSchool
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
@@ -24,10 +27,6 @@ namespace CIM.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ImagingStepJson")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsDeleted")
@@ -64,7 +63,6 @@ namespace CIM.Migrations
                         new
                         {
                             Id = 1,
-                            ImagingStepJson = "[false,false,false,false]",
                             IsDeleted = false,
                             IsDeployed = false,
                             Name = "CHASTEST",
@@ -76,7 +74,6 @@ namespace CIM.Migrations
                         new
                         {
                             Id = 2,
-                            ImagingStepJson = "[false,false,false,false]",
                             IsDeleted = false,
                             IsDeployed = false,
                             Name = "CHASTEST2",
@@ -88,7 +85,6 @@ namespace CIM.Migrations
                         new
                         {
                             Id = 3,
-                            ImagingStepJson = "[false,false,false,false]",
                             IsDeleted = false,
                             IsDeployed = false,
                             Name = "CHASTEST3",
