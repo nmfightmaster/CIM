@@ -19,7 +19,7 @@ namespace CIM.Services
             _ldapUsername = configuration["LDAP:Username"];
             _ldapPassword = configuration["LDAP:Password"];
         }
-        public async Task<string> GetOUAsync(string deviceName)
+        public string GetOU(string deviceName)
         {
             using (DirectoryEntry directoryEntry = new DirectoryEntry(_ldapPath, _ldapUsername, _ldapPassword))
             {

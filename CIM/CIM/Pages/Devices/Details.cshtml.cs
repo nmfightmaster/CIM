@@ -47,7 +47,7 @@ namespace CIM.Pages
             }
             _dellService.Device = device;
             DeviceWarranty = await _dellService.GetDataAsync();
-            Device.OU = await _ldapService.GetOUAsync(Device.Name);
+            Device.OU = _ldapService.GetOU(Device.Name);
             return Page();
         }
     }

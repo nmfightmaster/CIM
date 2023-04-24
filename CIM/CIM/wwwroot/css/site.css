@@ -48,8 +48,8 @@ td, th {
     width: 20%;
 }
 
-tr:hover td :not(#deviceDetails){
-        background-color: #c2e189;
+tr:hover td:not(#deviceDetails, .delete-column){
+        background-color: #c2e189 !important;
     }
 table tr:nth-of-type(even) {
     background-color: #C3D0DB;
@@ -72,7 +72,7 @@ a {
     text-decoration: none;
 }
 
-a:hover :not(#deviceDetails){
+a:hover:not(#deviceDetails){
     text-decoration: underline;
 }
 

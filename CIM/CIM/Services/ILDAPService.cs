@@ -2,6 +2,6 @@
 {
     public interface ILDAPService
     {
-        Task<string> GetOUAsync(string deviceName);
+        string GetOU(string deviceName);
     }
 }
