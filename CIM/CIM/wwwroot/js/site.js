@@ -2,9 +2,10 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-function sortTable(n) {
+function sortTable(tableId, n) {
+    console.log(tableId);
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("inventory");
+    table = document.getElementById(tableId);
     switching = true;
     dir = "asc";
     while (switching) {
@@ -29,7 +30,7 @@ function sortTable(n) {
         if (shouldSwitch) {
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
-            switchcount ++;      
+            switchcount++;
         } else {
             if (switchcount == 0 && dir == "asc") {
                 dir = "desc";
@@ -38,6 +39,7 @@ function sortTable(n) {
         }
     }
 }
+
 
 function searchTables() {
     // Get the search input and table elements

@@ -4,6 +4,9 @@
 @{
     ViewData["Title"] = "Inventory Devices";
 }
+<script src="~/js/site.js"></script>
+
+
 <div id="index-header">
     <h1>Device Inventory</h1>
     <div class="input-group">
@@ -24,10 +27,10 @@
             <table id="@tableId">
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)">
+                        <th onclick="sortTable('@tableId', 0)">
                             @Html.DisplayNameFor(model => model.Device[0].Name)
                         </th>
-                        <th onclick="sortTable(1)">
+                        <th onclick="sortTable('@tableId', 1)">
                             @Html.DisplayNameFor(model => model.Device[0].ServiceTag)
                         </th>
                         <th class="delete-column"></th> <!-- new table cell for delete button column -->

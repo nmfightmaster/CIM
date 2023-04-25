@@ -6,16 +6,8 @@
 }
 
 <h1>@Model.Device.Name - <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a></h1>
-
-<div id="details">
+<div class="DetailsView">
     <h4>Device Info:</h4>
-    @if (Model.Device.Status != "Imaged")
-    {
-        <h4>Imaging Process Checklist:</h4>
-    }
-    <hr/>
-</div>
-<div style="clear: both;">
     <table id="deviceDetails">
         <tbody>
             <tr>
@@ -44,32 +36,32 @@
             </tr>
         </tbody>
     </table>
-    <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false">
-            <input type="hidden" name="id" value="@Model.Device.Id" id="deviceId"/>
-            @if (Model.Device.Status != "Imaged")
+</div>
+<div class="DetailsView">
+    <input type="hidden" name="id" value="@Model.Device.Id" id="deviceId"/>
+    @if (Model.Device.Status != "Imaged")
+    {
+        <h4 class="DetailsView">Imaging Process Checklist:</h4>
+        <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false">
+        @for (int i = 0; i < 4; i++)
+        {
+            @if (Model.Device.ImagingStep[i])
             {
-                @for (int i = 0; i < 4; i++)
-                {
-                @if (Model.Device.ImagingStep[i])
-                {
-                    <input type="checkbox" id="@(i)" checked/>
-                } else
-                {
-                    <input type="checkbox" id="@(i)"/>
-                }
-
-
-                    <label for="@(i)box">@Model.imagingSteps[i]</label>
-
-                    <br />
-                }
-                <button id="submitBtn" disabled>Submit</button>
-            } else
-            {
-                <button id="submitBtn">Device Needs Imaged</button>
+                <input type="checkbox" id="@(i)" checked/>
+            } else {
+                <input type="checkbox" id="@(i)"/>
             }
-        </form> 
-    
+                <label for="@(i)">@Model.imagingSteps[i]</label>
+            }
+        <button id="submitBtn" disabled>Submit</button>
+        </form>
+    } else {
+        <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false">
+            <button id="submitBtn">Device Needs Imaged</button>
+        </form>
+}
+
+
 </div>
 <div>
     <h2 style="clear: both;"><a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h2>
@@ -78,10 +70,10 @@
     <table id="issues">
         <thead>
             <tr>
-                <th onclick="sortTable(0)">Type</th>
-                <th onclick="sortTable(1)">Details</th>
-                <th onclick="sortTable(2)">Issue Date</th>
-                <th onclick="sortTable(3)">Technician</th>
+                <th onclick="sortTable('issues', 0)">Type</th>
+                <th onclick="sortTable('issues', 1)">Details</th>
+                <th onclick="sortTable('issues', 2)">Issue Date</th>
+                <th onclick="sortTable('issues', 3)">Technician</th>
                 <th>Options</th>
             </tr>
         </thead>
@@ -113,8 +105,9 @@
 
     // Get the submit button
     const submitBtn = document.getElementById('submitBtn');
-
-
+    const allChecked = Array.from(checkboxes).every((c) => c.checked);
+    // Enable or disable the submit button accordingly
+    submitBtn.disabled = !allChecked;
     var deviceId = document.getElementById('deviceId').value;
     // Add a change event listener to each checkbox
     checkboxes.forEach((checkbox, index) => {
