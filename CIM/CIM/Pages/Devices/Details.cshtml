@@ -5,9 +5,9 @@
     ViewData["Title"] = Model.Device.Name;
 }
 
-<h1>@Model.Device.Name - <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a></h1>
+<h1>@Model.Device.Name</h1>
 <div class="DetailsView">
-    <h4>Device Info:</h4>
+    <h4>Device Info: - <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a></h4>
     <table id="deviceDetails">
         <tbody>
             <tr>
@@ -65,8 +65,10 @@
 </div>
 <div>
     <h2 style="clear: both;"><a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h2>
+
 @if (Model.Device.PreviousIssues.Count >= 1)
-{
+{    
+    <h4>Previous Issues:</h4>
     <table id="issues">
         <thead>
             <tr>

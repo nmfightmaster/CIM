@@ -20,7 +20,10 @@ namespace CIM.Pages.Devices
         }
 
         [BindProperty]
-      public Device Device { get; set; } = default!;
+        public Device Device { get; set; } = default!;
+
+        public string dName { get; set; }
+        public string dST { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -37,6 +40,8 @@ namespace CIM.Pages.Devices
             }
             else 
             {
+                dName = device.Name.Substring(3);
+                dST = device.ServiceTag.Substring(3);
                 Device = device;
             }
             return Page();

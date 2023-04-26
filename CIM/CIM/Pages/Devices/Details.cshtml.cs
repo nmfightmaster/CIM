@@ -24,12 +24,15 @@ namespace CIM.Pages
         private readonly CIM.Data.CIMContext _context;
         private readonly IDellService _dellService;
         private readonly ILDAPService _ldapService;
+        private readonly ILogger<DetailsModel> _logger;
         public string DeviceWarranty;
-        public DetailsModel(CIM.Data.CIMContext context, IDellService dellService, ILDAPService ldapService)
+
+        public DetailsModel(CIM.Data.CIMContext context, IDellService dellService, ILDAPService ldapService, ILogger<DetailsModel> logger)
         {
             _context = context;
             _dellService = dellService;
             _ldapService = ldapService;
+            _logger = logger;
         }
         public Device Device { get; set; } = default!;
         public string[] imagingSteps { get; set; } = new string[] { "Imaging Script" , "Computer Renamed" , "Dell Command" , "Windows Updates"};

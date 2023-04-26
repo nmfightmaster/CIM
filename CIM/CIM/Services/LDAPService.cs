@@ -42,23 +42,32 @@ namespace CIM.Services
                         // Handle the error appropriately
                         return "LDAP server is offline. Are you on the CHAS network?";
                     }
-                    ldapSearch.Filter = $"(&(objectClass=computer)(cn={deviceName}))";
-                    ldapSearch.SearchScope = SearchScope.Subtree;
-                    SearchResult searchResult = ldapSearch.FindOne();
-                    if (searchResult != null)
+                    try
                     {
-                        string path = searchResult.Path.Substring(7); // remove "LDAP://"
-                        string[] pathComponents = Regex.Split(path, ",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)"); // split path by commas, ignoring commas within quotes
-                        string formattedPath = $"{pathComponents[pathComponents.Length - 2].Substring(3)}/{pathComponents[pathComponents.Length - 3].Substring(3)}"; // add domain and top-level OU
-                        for (int i = pathComponents.Length - 4; i >= 1; i--)
+                        ldapSearch.Filter = $"(&(objectClass=computer)(cn={deviceName}))";
+                        ldapSearch.SearchScope = SearchScope.Subtree;
+                        SearchResult searchResult = ldapSearch.FindOne();
+                        if (searchResult != null)
                         {
-                            formattedPath += $"/{pathComponents[i].Substring(3)}"; // add nested OUs
+                            string path = searchResult.Path.Substring(7); // remove "LDAP://"
+                            string[] pathComponents = Regex.Split(path, ",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)"); // split path by commas, ignoring commas within quotes
+                            string formattedPath = $"{pathComponents[pathComponents.Length - 2].Substring(3)}/{pathComponents[pathComponents.Length - 3].Substring(3)}"; // add domain and top-level OU
+                            for (int i = pathComponents.Length - 4; i >= 1; i--)
+                            {
+                                formattedPath += $"/{pathComponents[i].Substring(3)}"; // add nested OUs
+                            }
+                            return formattedPath;
                         }
-                        return formattedPath;
-                    } else {
-                        string formattedPath = "Device not found in AD.";
-                        return formattedPath;
+                        else
+                        {
+                            string formattedPath = "Device not found in AD.";
+                            return formattedPath;
+                        }
+                    } catch (Exception ex) 
+                    {
+                        return "LDAP querying not enabled in testing.";
                     }
+                                       
                 }
             }
         }

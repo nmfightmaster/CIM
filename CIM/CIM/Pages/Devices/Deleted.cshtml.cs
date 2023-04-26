@@ -23,6 +23,11 @@ namespace CIM.Pages.Devices
         public async Task<IActionResult> OnGetAsync()
         {
             Devices = await _context.Devices.Where(d => d.IsDeleted).ToListAsync();
+            foreach (var device in Devices)
+            {
+                device.Name = device.Name.Substring(3);
+                device.ServiceTag = device.ServiceTag.Substring(3);
+            }
             return Page();
         }
         public async Task<IActionResult> OnPostAsync(int id)
@@ -34,6 +39,8 @@ namespace CIM.Pages.Devices
             }
             device.IsDeleted = false;
             device.DeletedAt = null;
+            device.Name = device.Name.Substring(3);
+            device.ServiceTag = device.ServiceTag.Substring(3);
             await _context.SaveChangesAsync();
             return RedirectToPage();
         }

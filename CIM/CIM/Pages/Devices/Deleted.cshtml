@@ -9,7 +9,7 @@
 
 @if (Model.Devices.Any())
 {
-    <table class="table">
+    <table>
         <thead>
             <tr>
                 <th>Device ID</th>
@@ -21,19 +21,14 @@
             @foreach (var device in Model.Devices)
             {
                 <tr>
-                    <td>@device.Id</td>
+                    <td>@device.ServiceTag</td>
                     <td>@device.Name</td>
                     <td>
-                        <form method="post">
+                        <form method="post" style="display: inline;">
                             <input type="hidden" name="id" value="@device.Id" />
                             <button type="submit" class="btn btn-primary">Restore</button>
                         </form>
-                    </td>
-                    <td>
-                        <form method="post" asp-page="/Devices/PermaDelete" asp-route-id=@device.Id>
-                            <input type="hidden" name="id" value="@device.Id" />
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        <a asp-page="/Devices/PermaDelete" asp-route-id="@device.Id" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             }

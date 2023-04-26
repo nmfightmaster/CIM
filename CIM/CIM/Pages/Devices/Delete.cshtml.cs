@@ -60,6 +60,8 @@ namespace CIM.Pages
             {
                 device.IsDeleted = true;
                 device.DeletedAt = DateTime.Now;
+                device.Name = "zzz" + device.Name;
+                device.ServiceTag = "zzz" + device.ServiceTag;
             }
             else
             {
