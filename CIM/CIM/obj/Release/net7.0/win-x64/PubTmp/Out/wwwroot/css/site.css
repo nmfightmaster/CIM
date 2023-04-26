@@ -1,0 +1,130 @@
+html {
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 1.143rem;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1em white, 0 0 0 0.25em #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 3.5714%;
+    font-family: 'Myriad W01 Regular';
+}
+
+table {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 0.0714em solid #ddd;
+    border-bottom: 0.0714em solid #ddd;
+    text-align: center;
+}
+
+td, th {
+    vertical-align: middle;
+    width: 25%;
+}
+
+#issues td, th {
+    vertical-align: middle;
+    width: 20%;
+}
+
+tr:hover td:not(#deviceDetails, .delete-column) {
+    background-color: #c2e189 !important;
+}
+
+table tr:nth-of-type(even) {
+    background-color: #C3D0DB;
+}
+
+table tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+
+th {
+    text-align: center;
+    background-color: #789d4a;
+    color: white;
+}
+
+.body {
+    height: 7.143%;
+    overflow: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+    a:hover:not(#deviceDetails) {
+        text-decoration: underline;
+    }
+
+#index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100% !important;
+}
+
+.input-group {
+    width: 40%;
+}
+
+#deviceSearch {
+    background: url(/fontawesome/svgs/solid/search.svg) no-repeat;
+    display: inline-block;
+    width: 3.5714%;
+    height: 3.5714%;
+    position: relative;
+    left: -3.5714%;
+}
+
+#index-header input[type="text"] {
+    margin: 0 0 0 8.5714%;
+    height: 3.5714%;
+}
+
+.delete-column {
+    width: 0.0714%;
+}
+
+#deviceDetails {
+    width: 50%;
+}
+
+#deviceDetails th {
+    width: 14%;
+    text-align: left;
+}
+
+#deviceDetails td {
+    text-align: left;
+}
+
+#imageChecklist {
+    height: 26.7857%;;
+}
+
+.DetailsView {
+    display: inline-block;
+}
