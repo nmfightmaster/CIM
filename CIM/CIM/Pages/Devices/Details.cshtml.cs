@@ -36,14 +36,14 @@ namespace CIM.Pages
         }
         public Device Device { get; set; } = default!;
         public string[] imagingSteps { get; set; } = new string[] { "Imaging Script" , "Computer Renamed" , "Dell Command" , "Windows Updates"};
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string? id)
         {
             if (id == null || _context.Devices == null)
             {
                 return NotFound();
             }
             var device = await _context.Devices.Include(d => d.PreviousIssues)
-                .FirstOrDefaultAsync(d => d.Id == id && !d.IsDeleted);
+                .FirstOrDefaultAsync(d => d.Name.ToLower() == id.ToLower() && !d.IsDeleted);
             if (device == null)
             {
                 return NotFound();

@@ -17,6 +17,11 @@ builder.Services.AddScoped<IDeviceService, DeviceService>()
     .AddScoped<IDellService, DellService>()
     .AddScoped<ILDAPService, LDAPService>();
 
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = true;
+});
+
 var baseAddress = Environment.GetEnvironmentVariable("ExternalApi: BaseUrl");
 builder.Services.AddHttpClient("Dell", s =>
 {

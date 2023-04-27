@@ -20,7 +20,7 @@ namespace CIM.Pages
             _context = context;
         }
 
-        [BindProperty]
+        [BindProperty(Name = "Device", SupportsGet = true)]
         public Device Device { get; set; } = default!;
 
         public SelectList statusList { get; set; }
@@ -49,7 +49,7 @@ namespace CIM.Pages
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return BadRequest(ModelState);
             }
 
             _context.Attach(Device).State = EntityState.Modified;
@@ -70,7 +70,7 @@ namespace CIM.Pages
                 }
             }
 
-            return RedirectToPage("/Devices/Details", new { id = Device.Id });
+            return RedirectToPage("/Devices/Details", new { id = Device.Name });
         }
 
         private bool DeviceExists(int id)

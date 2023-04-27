@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using CIM.Data;
 using CIM.Models;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace CIM.Pages.PreviousIssues
 {
@@ -19,14 +20,16 @@ namespace CIM.Pages.PreviousIssues
         [BindProperty]
         public PreviousIssue PreviousIssue { get; set; } = default!;
         public string[] issueTypes = new[] { "Hardware", "Software" };
-
+        public string deviceName { get; set; }
         public CreateModel(CIM.Data.CIMContext context)
         {
             _context = context;
         }
 
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
+            Device device = await _context.Devices.Where(x => x.Id == id).FirstOrDefaultAsync();
+            deviceName = device.Name;
             this.id = id;
             return Page();
         }
@@ -37,12 +40,14 @@ namespace CIM.Pages.PreviousIssues
             if (!ModelState.IsValid || PreviousIssue == null)
             {
                 return Page();
+                Console.WriteLine("error.");
             }
             PreviousIssue.DeviceId = id;
             _context.PreviousIssues.Add(PreviousIssue);
             await _context.SaveChangesAsync();
-
-            return RedirectToPage("../Devices/Details", new { id });
+            Device device = await _context.Devices.Where(x => x.Id == id).FirstOrDefaultAsync();
+            deviceName = device.Name;
+            return RedirectToPage($"/Devices/Details/{deviceName.ToLower()}");
         }
     }
 }

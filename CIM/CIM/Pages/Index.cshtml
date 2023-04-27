@@ -42,10 +42,10 @@
                         @if (item.Status == status)
                         {
                             <tr>
-                                <td onclick="location.href='@Url.Page("./Devices/Details", new { id = item.Id })'">
+                                <td onclick="location.href='@Url.Page("./Devices/Details", new { id = item.Name })'">
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
-                                <td onclick="location.href='@Url.Page("./Devices/Details", new { id = item.Id })'">
+                                <td onclick="location.href='@Url.Page("./Devices/Details", new { id = item.Name })'">
                                     @Html.DisplayFor(modelItem => item.ServiceTag)
                                 </td>
                                 <td class="delete-column">
