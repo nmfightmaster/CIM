@@ -42,12 +42,3 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-
-// Automatically open the default web browser after the application is started
-Process.Start(new ProcessStartInfo
-{
-    FileName = "cmd",
-    Arguments = $"/c start https://localhost:443", // Replace with your published URL
-    CreateNoWindow = true,
-    UseShellExecute = false
-});
