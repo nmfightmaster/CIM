@@ -16,8 +16,7 @@ namespace CIM.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-                .ApplyConfiguration(new DeviceConfiguration())
-                .ApplyConfiguration(new PreviousIssueConfiguration());
+                .ApplyConfiguration(new DeviceConfiguration());
         }
     }
 }

@@ -47,6 +47,6 @@
     <form method="post">
         <input type="hidden" asp-for="PreviousIssue.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="/Devices/Details" asp-route-id="@Model.PreviousIssue.DeviceId">Back to List</a>
+        <a asp-page="/Devices/Details" asp-route-id="@Model.deviceName">Back to List</a>
     </form>
 </div>

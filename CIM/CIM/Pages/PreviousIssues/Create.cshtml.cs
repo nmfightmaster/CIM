@@ -20,7 +20,6 @@ namespace CIM.Pages.PreviousIssues
         [BindProperty]
         public PreviousIssue PreviousIssue { get; set; } = default!;
         public string[] issueTypes = new[] { "Hardware", "Software" };
-        public string deviceName { get; set; }
         public CreateModel(CIM.Data.CIMContext context)
         {
             _context = context;
@@ -28,8 +27,6 @@ namespace CIM.Pages.PreviousIssues
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            Device device = await _context.Devices.Where(x => x.Id == id).FirstOrDefaultAsync();
-            deviceName = device.Name;
             this.id = id;
             return Page();
         }
@@ -46,8 +43,7 @@ namespace CIM.Pages.PreviousIssues
             _context.PreviousIssues.Add(PreviousIssue);
             await _context.SaveChangesAsync();
             Device device = await _context.Devices.Where(x => x.Id == id).FirstOrDefaultAsync();
-            deviceName = device.Name;
-            return RedirectToPage($"/Devices/Details/{deviceName.ToLower()}");
+            return RedirectToPage("/Devices/Details", new { id = device.Name });
         }
     }
 }

@@ -35,11 +35,6 @@ namespace CIM.Services
                     }
                     catch (Exception ex)
                     {
-                        // Log the exception
-                    }
-                    if (!isServerOnline)
-                    {
-                        // Handle the error appropriately
                         return "LDAP server is offline. Are you on the CHAS network?";
                     }
                     try
@@ -65,7 +60,7 @@ namespace CIM.Services
                         }
                     } catch (Exception ex) 
                     {
-                        return "LDAP querying not enabled in testing.";
+                        return "LDAP secrets not enabled.";
                     }
                                        
                 }

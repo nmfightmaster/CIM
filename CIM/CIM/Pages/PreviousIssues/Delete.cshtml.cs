@@ -19,8 +19,10 @@ namespace CIM.Pages.PreviousIssues
             _context = context;
         }
 
+        public string deviceName { get; set; }
+
         [BindProperty]
-      public PreviousIssue PreviousIssue { get; set; } = default!;
+        public PreviousIssue PreviousIssue { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,7 +32,8 @@ namespace CIM.Pages.PreviousIssues
             }
 
             var previousissue = await _context.PreviousIssues.FirstOrDefaultAsync(m => m.Id == id);
-
+            Device device = await _context.Devices.Where(x => x.Id == previousissue.DeviceId).FirstOrDefaultAsync();
+            deviceName = device.Name;
             if (previousissue == null)
             {
                 return NotFound();
@@ -58,7 +61,8 @@ namespace CIM.Pages.PreviousIssues
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("../Devices/Details", new { id });
+            Device device = await _context.Devices.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return RedirectToPage("/Devices/Details", new { id = device.Name });
         }
     }
 }

@@ -68,7 +68,8 @@ namespace CIM.Pages.PreviousIssues
                     throw;
                 }
             }
-            return RedirectToPage("/Devices/Details", new { id = PreviousIssue.DeviceId });
+            Device device = await _context.Devices.Where(x => x.Id == PreviousIssue.DeviceId).FirstOrDefaultAsync();
+            return RedirectToPage("/Devices/Details", new { id = device.Name });
         }
 
         private bool PreviousIssueExists(int id)
