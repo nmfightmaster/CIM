@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\CIM.bundle.scp.css"
     },
     {
+      "Id": "L:\\CIM\\CIM\\CIM\\wwwroot\\css\\logo.png",
+      "PackagePath": "staticwebassets\\css\\logo.png"
+    },
+    {
       "Id": "L:\\CIM\\CIM\\CIM\\wwwroot\\css\\magnifying-glass-solid.svg",
       "PackagePath": "staticwebassets\\css\\magnifying-glass-solid.svg"
     },

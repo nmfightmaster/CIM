@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8x0X4mS4Cq8tR+LIt3aSfcIWd4hBtTrVNeyXK5o5asY=",
+  "Hash": "SFZvcb8ZP3njmHHT8lhl+SuO1RvAd/RxkpxC8FErO5E=",
   "Source": "CIM",
   "BasePath": "_content/CIM",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "L:\\CIM\\CIM\\CIM\\obj\\Release\\net7.0\\win-x64\\scopedcss\\projectbundle\\CIM.bundle.scp.css"
+    },
+    {
+      "Identity": "L:\\CIM\\CIM\\CIM\\wwwroot\\css\\logo.png",
+      "SourceId": "CIM",
+      "SourceType": "Discovered",
+      "ContentRoot": "L:\\CIM\\CIM\\CIM\\wwwroot\\",
+      "BasePath": "_content/CIM",
+      "RelativePath": "css/logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\logo.png"
     },
     {
       "Identity": "L:\\CIM\\CIM\\CIM\\wwwroot\\css\\magnifying-glass-solid.svg",
