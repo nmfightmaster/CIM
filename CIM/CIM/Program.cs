@@ -48,6 +48,9 @@ app.MapRazorPages();
 
 app.Start();
 
-Process.Start("cmd", "/C start http://localhost:5000");
+if (!app.Environment.IsDevelopment())
+{
+    Process.Start("cmd", "/C start http://localhost:5000");
+}
 
 app.WaitForShutdown();

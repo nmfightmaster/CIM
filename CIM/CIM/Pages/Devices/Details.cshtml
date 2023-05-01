@@ -5,68 +5,74 @@
     ViewData["Title"] = Model.Device.Name;
 }
 
-<h1>@Model.Device.Name</h1>
-<div class="DetailsView">
-    <h4>Device Info: - <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a></h4>
-    <table id="deviceDetails">
-        <tbody>
-            <tr>
-                <th><i class="fas fa-desktop"></i>  @Html.DisplayNameFor(model => model.Device.Name)</th>
-                <td>@Html.DisplayFor(model => model.Device.Name)</td>
-            </tr>
-            <tr>
-                <th><i class="fas fa-tag fa-fw"></i>    @Html.DisplayNameFor(model => model.Device.ServiceTag)</th>
-                <td><a href='@string.Format("https://www.dell.com/support/home/en-us/product-support/servicetag/{0}/overview", Model.Device.ServiceTag)'><i class="fas fa-external-link-alt fa-fw"></i>@Model.Device.ServiceTag</a></td>
-            </tr>
-            <tr>
-                <th><i class="fas fa-building fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.OU)</th>
-                <td>@Html.DisplayFor(model => model.Device.OU)</td>
-            </tr>
-            <tr>
-                <th><i class="fas fa-user fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.PU)</th>
-                <td>@Html.DisplayFor(model => model.Device.PU)</td>
-            </tr>
-            <tr>
-                <th><i class="fas fa-exclamation-triangle fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.Status)</th>
-                <td>@Html.DisplayFor(model => model.Device.Status)</td>
-            </tr>
-            <tr>
-                <th><i class="fas fa-calendar-day fa-fw"></i>   Warranty Expiration</th>
-                <td>@Model.DeviceWarranty</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="detailsTitle">
+    <h1>@Model.Device.Name</h1>
 </div>
-<div class="DetailsView">
-    <input type="hidden" name="id" value="@Model.Device.Id" id="deviceId"/>
-    @if (Model.Device.Status != "Imaged")
-    {
-        <h4 class="DetailsView">Imaging Process Checklist:</h4>
-        <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false" asp-route-id="@Model.Device.Id">
-        @for (int i = 0; i < 4; i++)
-        {
-            @if (Model.Device.ImagingStep[i])
-            {
-                <input type="checkbox" id="@(i)" checked/>
-            } else {
-                <input type="checkbox" id="@(i)"/>
-            }
-                <label for="@(i)">@Model.imagingSteps[i]</label>
-            }
-        <button id="submitBtn" disabled>Submit</button>
-        </form>
-    } else {
-        <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false" asp-route-id="@Model.Device.Id">
-            <button id="submitBtn">Device Needs Imaged</button>
-        </form>
-    }
-</div>
-<div>
-    <h2 style="clear: both;"><a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h2>
 
+<div class="DetailsView">
+    <div class="squashed">
+        <h4>Device Info: - <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a></h4>
+        <table id="deviceDetails">
+            <tbody>
+                <tr>
+                    <th><i class="fas fa-desktop"></i>  @Html.DisplayNameFor(model => model.Device.Name)</th>
+                    <td>@Html.DisplayFor(model => model.Device.Name)</td>
+                </tr>
+                <tr>
+                    <th><i class="fas fa-tag fa-fw"></i>    @Html.DisplayNameFor(model => model.Device.ServiceTag)</th>
+                    <td><a href='@string.Format("https://www.dell.com/support/home/en-us/product-support/servicetag/{0}/overview", Model.Device.ServiceTag)'><i class="fas fa-external-link-alt fa-fw"></i>@Model.Device.ServiceTag</a></td>
+                </tr>
+                <tr>
+                    <th><i class="fas fa-building fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.OU)</th>
+                    <td>@Html.DisplayFor(model => model.Device.OU)</td>
+                </tr>
+                <tr>
+                    <th><i class="fas fa-user fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.PU)</th>
+                    <td>@Html.DisplayFor(model => model.Device.PU)</td>
+                </tr>
+                <tr>
+                    <th><i class="fas fa-exclamation-triangle fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.Status)</th>
+                    <td>@Html.DisplayFor(model => model.Device.Status)</td>
+                </tr>
+                <tr>
+                    <th><i class="fas fa-calendar-day fa-fw"></i>   Warranty Expiration</th>
+                    <td>@Model.DeviceWarranty</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="squashed">
+        <input type="hidden" name="id" value="@Model.Device.Id" id="deviceId"/>
+        @if (Model.Device.Status != "Imaged")
+        {
+            <h4>Imaging Process Checklist:</h4>
+            <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false" asp-route-id="@Model.Device.Id">
+            @for (int i = 0; i < 4; i++)
+            {
+                @if (Model.Device.ImagingStep[i])
+                {
+                    <input type="checkbox" id="@(i)" checked/>
+                } else {
+                    <input type="checkbox" id="@(i)"/>
+                }
+                    <label for="@(i)">@Model.imagingSteps[i]</label>
+                    <br />
+                }
+            <button id="submitBtn" class="button-19" disabled>Mark Device Imaged</button>
+            </form>
+        } else {
+            <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false" asp-route-id="@Model.Device.Id">
+                <button id="submitBtn" class="button-19">Device Needs Imaged</button >
+            </form>
+        }
+    </div>
+</div>
+<br />
+<br />
+<div>
 @if (Model.Device.PreviousIssues.Count >= 1)
 {    
-    <h4>Previous Issues:</h4>
+    <h4>Previous Issues: - <a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h4>
     <table id="issues">
         <thead>
             <tr>
@@ -92,8 +98,10 @@
                 </tr>
             }
         </tbody>
-    </table>
-}
+        </table>
+} else {
+        <h4>PNo Known Previous Issues - <a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h4>
+    }
 
 
     <a asp-page="../Index">Back to List</a>

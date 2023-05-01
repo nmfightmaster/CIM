@@ -12,7 +12,6 @@
     <div class="input-group">
         <input type="text" class="form-control" id="deviceSearch" onkeyup="searchTables()" placeholder="Search Inventory..." style="padding-left: 3rem;">
     </div>
-    <h1><a asp-page="\Devices\Create">Add New Device</a></h1>
 </div>
 
 
@@ -33,7 +32,7 @@
                         <th onclick="sortTable('@tableId', 1)">
                             @Html.DisplayNameFor(model => model.Device[0].ServiceTag)
                         </th>
-                        <th class="delete-column"></th> <!-- new table cell for delete button column -->
+                        <th class="delete-column">...</th> <!-- new table cell for delete button column -->
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +53,7 @@
                                     {
                                         <form asp-page="/Devices/Delete" asp-route-id="@item.Id">
                                             <a href="/Devices/Delete/@item.Id" onclick="event.preventDefault(); this.closest('form').submit();">
-                                                <i class="fa fa-trash fa-sm" style="color: red"></i>
+                                                <i class="fa fa-trash fa-sm" style="color: rgb(151,27,47);"></i>
                                             </a>
                                         </form>
                                     }
