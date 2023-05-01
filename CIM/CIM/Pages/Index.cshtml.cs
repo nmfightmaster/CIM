@@ -27,7 +27,7 @@ namespace CIM.Pages
         {
             if (_context.Devices != null)
             {
-                statusTypes = _context.Devices.Select(x => x.Status).Where(x => x != "Deployed").Distinct().ToArray();
+                statusTypes = new string[]{ "Needs Imaged","Imaged","Dell Repair in Process"};
                 Device = await _context.Devices.Where(d => !d.IsDeleted).ToListAsync();
             }
         }  

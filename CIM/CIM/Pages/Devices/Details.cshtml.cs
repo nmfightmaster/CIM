@@ -59,7 +59,7 @@ namespace CIM.Pages
             return Page();
         }
         public async Task<IActionResult> OnPostToggleImage(int id) {
-            Device = await _context.Devices.FirstOrDefaultAsync(d => d.Id == id);
+            Device = await _context.Devices.FirstOrDefaultAsync(m => m.Id == id);
             if (Device != null)
             {
                 if (Device.Status == "Imaged")
@@ -75,7 +75,7 @@ namespace CIM.Pages
                 Device.ImagingStepJson = JsonConvert.SerializeObject(Device.ImagingStep);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToPage("/Devices/Details", new { id = Device.Id }); 
+            return RedirectToPage("/Devices/Details", new { id = Device.Name}); 
         }
 
         public async Task<IActionResult> OnPostStep(bool isChecked, int id, int step)

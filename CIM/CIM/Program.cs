@@ -46,4 +46,8 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.Run();
+app.Start();
+
+Process.Start("cmd", "/C start http://localhost:5000");
+
+app.WaitForShutdown();

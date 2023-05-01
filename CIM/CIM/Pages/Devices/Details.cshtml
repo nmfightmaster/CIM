@@ -42,7 +42,7 @@
     @if (Model.Device.Status != "Imaged")
     {
         <h4 class="DetailsView">Imaging Process Checklist:</h4>
-        <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false">
+        <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false" asp-route-id="@Model.Device.Id">
         @for (int i = 0; i < 4; i++)
         {
             @if (Model.Device.ImagingStep[i])
@@ -56,12 +56,10 @@
         <button id="submitBtn" disabled>Submit</button>
         </form>
     } else {
-        <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false">
+        <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false" asp-route-id="@Model.Device.Id">
             <button id="submitBtn">Device Needs Imaged</button>
         </form>
-}
-
-
+    }
 </div>
 <div>
     <h2 style="clear: both;"><a asp-page="/PreviousIssues/Create" asp-route-id=@Model.Device.Id>Log New Issue for @Model.Device.Name</a></h2>
