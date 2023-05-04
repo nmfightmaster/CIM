@@ -12,30 +12,30 @@
 <div class="DetailsView">
     <div class="squashed">
         <h4>Device Info: - <a asp-page="./Edit" asp-route-id="@Model.Device?.Id">Edit</a></h4>
-        <table id="deviceDetails">
+        <table class="deviceDetails">
             <tbody>
                 <tr>
-                    <th><i class="fas fa-desktop"></i>  @Html.DisplayNameFor(model => model.Device.Name)</th>
+                    <th><i class="material-icons">devices</i>@Html.DisplayNameFor(model => model.Device.Name)</th>
                     <td>@Html.DisplayFor(model => model.Device.Name)</td>
                 </tr>
                 <tr>
-                    <th><i class="fas fa-tag fa-fw"></i>    @Html.DisplayNameFor(model => model.Device.ServiceTag)</th>
-                    <td><a href='@string.Format("https://www.dell.com/support/home/en-us/product-support/servicetag/{0}/overview", Model.Device.ServiceTag)'><i class="fas fa-external-link-alt fa-fw"></i>@Model.Device.ServiceTag</a></td>
+                    <th><i class="material-icons">tag</i>@Html.DisplayNameFor(model => model.Device.ServiceTag)</th>
+                    <td><a href='@string.Format("https://www.dell.com/support/home/en-us/product-support/servicetag/{0}/overview", Model.Device.ServiceTag)'>@Model.Device.ServiceTag<i class="material-icons">launch</i></a></td>
                 </tr>
                 <tr>
-                    <th><i class="fas fa-building fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.OU)</th>
+                    <th><i class="material-icons">folder</i>@Html.DisplayNameFor(model => model.Device.OU)</th>
                     <td>@Html.DisplayFor(model => model.Device.OU)</td>
                 </tr>
                 <tr>
-                    <th><i class="fas fa-user fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.PU)</th>
+                    <th><i class="material-icons">person</i>@Html.DisplayNameFor(model => model.Device.PU)</th>
                     <td>@Html.DisplayFor(model => model.Device.PU)</td>
                 </tr>
                 <tr>
-                    <th><i class="fas fa-exclamation-triangle fa-fw"></i>   @Html.DisplayNameFor(model => model.Device.Status)</th>
+                    <th><i class="material-icons">info</i>@Html.DisplayNameFor(model => model.Device.Status)</th>
                     <td>@Html.DisplayFor(model => model.Device.Status)</td>
                 </tr>
                 <tr>
-                    <th><i class="fas fa-calendar-day fa-fw"></i>   Warranty Expiration</th>
+                    <th><i class="material-icons">healing</i>Warranty Expiration</th>
                     <td>@Model.DeviceWarranty</td>
                 </tr>
             </tbody>
@@ -43,28 +43,37 @@
     </div>
     <div class="squashed">
         <input type="hidden" name="id" value="@Model.Device.Id" id="deviceId"/>
-        @if (Model.Device.Status != "Imaged")
-        {
-            <h4>Imaging Process Checklist:</h4>
-            <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false" asp-route-id="@Model.Device.Id">
-            @for (int i = 0; i < 4; i++)
+        <h4>Imaging Process Checklist:</h4>
+        <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false" asp-route-id="@Model.Device.Id">
+            <table class="deviceDetails">
+                <tbody>                    
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <tr>
+                            <th>@Model.imagingSteps[i]</th>
+                            <td>
+                                @if (Model.Device.ImagingStep[i])
+                                {
+                                    <input type="checkbox" id="@(i)" checked />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" id="@(i)"/>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @if (Model.Device.Status == "Imaged")
             {
-                @if (Model.Device.ImagingStep[i])
-                {
-                    <input type="checkbox" id="@(i)" checked/>
-                } else {
-                    <input type="checkbox" id="@(i)"/>
-                }
-                    <label for="@(i)">@Model.imagingSteps[i]</label>
-                    <br />
-                }
-            <button id="submitBtn" class="button-19" disabled>Mark Device Imaged</button>
-            </form>
-        } else {
-            <form asp-page-handler="ToggleImage" method="post" id="imageChecklist" asp-antiforgery="false" asp-route-id="@Model.Device.Id">
-                <button id="submitBtn" class="button-19">Device Needs Imaged</button >
-            </form>
-        }
+                <button id="submitBtn" class="imageBtn" disabled>Device Needs Imaged</button>
+            }
+            else
+            {
+                <button id="submitBtn" class="imageBtn" disabled>Mark Device Imaged</button>
+            }
+        </form>
     </div>
 </div>
 <br />

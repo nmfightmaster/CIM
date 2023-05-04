@@ -35,7 +35,7 @@ namespace CIM.Pages
             _logger = logger;
         }
         public Device Device { get; set; } = default!;
-        public string[] imagingSteps { get; set; } = new string[] { "Imaging Script" , "Computer Renamed" , "Dell Command" , "Windows Updates"};
+        public string[] imagingSteps { get; set; } = new string[] { "Imaging Script" , "Renamed" , "Dell Command" , "Windows Updates"};
         public async Task<IActionResult> OnGetAsync(string? id)
         {
             if (id == null || _context.Devices == null)

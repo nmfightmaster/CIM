@@ -4,18 +4,12 @@
 @{
     ViewData["Title"] = "Inventory Devices";
 }
-<script src="~/js/site.js"></script>
-
-
 <div id="index-header">
     <h1>Device Inventory</h1>
     <div class="input-group">
         <input type="text" class="form-control" id="deviceSearch" onkeyup="searchTables()" placeholder="Search Inventory..." style="padding-left: 3rem;">
     </div>
 </div>
-
-
-<hr>
 
 @foreach (var status in Model.statusTypes)
 {

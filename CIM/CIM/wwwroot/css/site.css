@@ -33,7 +33,7 @@ table {
     width: 100%;
 }
 table, th, td, tr {
-    border: 3px solid rgb(151,27,47);
+    border: 2px solid rgb(151,27,47);
 }
 
 
@@ -93,7 +93,6 @@ a:hover:not(#deviceDetails) {
     justify-content: space-between;
     align-items: center;
     max-width: 100% !important;
-    padding-top: 2%;
 }
 
 .input-group {
@@ -124,17 +123,11 @@ a:hover:not(#deviceDetails) {
     width: 0.0714%;
 }
 
-#deviceDetails {
-    padding-top: 2%;
-}
-
-#deviceDetails th {
-    padding: 1%;
+.deviceDetails th {
     text-align: left;
 }
 
-#deviceDetails td {
-    padding: 1%;
+.deviceDetails td {
     text-align: left;
 }
 
@@ -142,16 +135,23 @@ a:hover:not(#deviceDetails) {
     display: flex;
 }
 
+.squashed:first-of-type{
+    width: 70%;
+}
+
+.squashed:last-of-type{
+    width: 30%;
+}
+
+.squashed:last-of-type td {
+    width: 1%;
+    padding-left: 1%;    
+}
+
 .squashed:first-child {
-    width: calc(70% - 10px);
     margin-right: 10px;
 }
 
-.squashed:last-child {
-    width: calc(30% - 10px);
-    margin-top: 7%;
-    align-self: center;
-}
 
 .button-19 {
     appearance: button;
@@ -213,4 +213,24 @@ a:hover:not(#deviceDetails) {
     cursor: auto;
 }
 
+.deviceDetails .material-icons {
+    vertical-align: text-bottom;
+    margin-right: 3%;
+    margin-left: 3%;
+}
+
+.imageBtn {
+    position: relative;
+    top: 90%;
+    transform: translateY(120%);
+    margin: 0 auto;
+    display: block;
+    background-color: rgb(151,27,47);
+    color: white;
+}
+
+.imageBtn:disabled {
+    color: grey;
+    background-color: white;
+}
 

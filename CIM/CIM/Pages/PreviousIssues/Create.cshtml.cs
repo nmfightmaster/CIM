@@ -17,6 +17,7 @@ namespace CIM.Pages.PreviousIssues
         private readonly CIM.Data.CIMContext _context;
         [BindProperty]
         public int id { get; set; }
+        public string dName { get; set; }
         [BindProperty]
         public PreviousIssue PreviousIssue { get; set; } = default!;
         public string[] issueTypes = new[] { "Hardware", "Software" };
@@ -27,7 +28,9 @@ namespace CIM.Pages.PreviousIssues
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            this.id = id;
+            this.id = id; 
+            Device device = await _context.Devices.Where(x => x.Id == id).FirstOrDefaultAsync();
+            dName = device.Name;
             return Page();
         }
 
