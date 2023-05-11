@@ -13,6 +13,7 @@ interface ComputerProps {
 
 const Computer = (props:ComputerProps) => {
     return (
+        <>
             <Accordion>
                 <AccordionSummary>
                     <Typography>{props.name}</Typography>
@@ -23,6 +24,7 @@ const Computer = (props:ComputerProps) => {
                     <PreviousIssues />
                 </AccordionDetails>                
             </Accordion>
+        </>
     )
 }
 
