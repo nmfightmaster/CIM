@@ -9,69 +9,69 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CIM
 build_property.RootNamespace = CIM
-build_property.ProjectDir = L:\CIM\CIM (C#, deprecated)\CIM\
+build_property.ProjectDir = C:\Users\nfightmaster\Documents\CIM\CIMdeprecated\CIM\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = L:\CIM\CIM (C#, deprecated)\CIM
+build_property.MSBuildProjectDirectory = C:\Users\nfightmaster\Documents\CIM\CIMdeprecated\CIM
 build_property._RazorSourceGeneratorDebug = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/Devices/Create.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/Devices/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/Devices/Delete.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/Devices/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/Devices/Deleted.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/Devices/Deleted.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZWxldGVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/Devices/Details.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/Devices/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/Devices/Edit.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/Devices/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/Devices/PermaDelete.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/Devices/PermaDelete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGV2aWNlc1xQZXJtYURlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/Error.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/Index.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/PreviousIssues/Create.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/PreviousIssues/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJldmlvdXNJc3N1ZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/PreviousIssues/Delete.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/PreviousIssues/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJldmlvdXNJc3N1ZXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/PreviousIssues/Edit.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/PreviousIssues/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJldmlvdXNJc3N1ZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/_ViewImports.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/_ViewStart.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[L:/CIM/CIM (C\#\, deprecated)/CIM/Pages/Shared/_Layout.cshtml]
+[C:/Users/nfightmaster/Documents/CIM/CIMdeprecated/CIM/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-qa8fdv0ogj

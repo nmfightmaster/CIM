@@ -1,12 +1,12 @@
 import React from 'react'
 import './App.css'
-import StatusTabs from './components/StatusTabs';
-
+import './index.css'
 function App() {
   return (
-    <div>
-      <StatusTabs />
-    </div>    
+    <span className="bg-blue-500">
+      Hello<br />
+      World
+    </span>
   );
 }
 export default App
