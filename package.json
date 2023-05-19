@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "Express": "^3.0.1"
+    "dotenv": "^16.0.3",
+    "Express": "^3.0.1",
+    "mysql2": "^3.3.1",
+    "sequelize": "^6.31.1",
+    "vite": "^4.3.8"
   }
 }
