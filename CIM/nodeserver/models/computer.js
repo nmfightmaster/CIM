@@ -25,8 +25,7 @@ const Computer = sequelize.define("computers", {
         allowNull: false,
     },
     imagedOn: {
-        type: DataTypes.DATEONLY,
-        allowNull: true,
+        type: DataTypes.STRING,
     },
 });
 

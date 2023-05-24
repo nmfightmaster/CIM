@@ -15,9 +15,9 @@ app.get('/', function(req, res) {
 });
 
 app.post('/api/computers', async(req, res) => {
-    const {name, serviceTag, model, status, imagedOn} = req.body;
+    const {name, serviceTag, model, status} = req.body;
     try{
-        const computer = await Computer.create({name, serviceTag, model, status, imagedOn});
+        const computer = await Computer.create({name, serviceTag, model, status});
         return res.json(computer);
     }catch(err){
         console.log(err);
@@ -36,7 +36,7 @@ app.get('/api/computers', async(req, res) => {
 });
 
 app.put('/api/computers/:id', async(req, res) => {
-    const {name, serviceTag, model, status, imagedOn} = req.body;
+    const {name, serviceTag, model, status} = req.body;
     const {id} = req.params;
     try{
         const computer = await Computer.findOne({where: {id}});
@@ -44,7 +44,7 @@ app.put('/api/computers/:id', async(req, res) => {
         computer.serviceTag = serviceTag;
         computer.model = model;
         computer.status = status;
-        computer.imagedOn = imagedOn;
+        computer.imagedOn = new Date().toLocaleDateString();
         await computer.save();
         return res.json(computer);
     }catch(err){

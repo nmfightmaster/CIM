@@ -1,0 +1,5 @@
+{
+    "scripts": {
+      "dev": "concurrently \"cd nodeserver && nodemon start\" \"cd reactfrontend && npm run dev\""
+    }
+  }
