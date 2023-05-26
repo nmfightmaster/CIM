@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config({ path: './.env' });
+const { execSync } = require('child_process');
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -11,8 +12,14 @@ const sequelize = new Sequelize(
     }
 );
 
-sequelize.authenticate().then(() => {
+sequelize.sync({ force:true }).then(() => {
     console.log('Connection has been established successfully.');
+    try {
+        execSync('npx sequelize-cli db:seed:all');
+        console.log('Seeding successful');
+    } catch (error) {
+        console.log('Seeding failed');
+    }
  }).catch((error) => {
     console.error('Unable to connect to the database: ', error);
  });

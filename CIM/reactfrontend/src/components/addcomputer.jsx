@@ -36,7 +36,7 @@ const AddComputer = ({ onComputerAdded }) => {
 
     return (
         <div>
-            <h1>Add Computer</h1>
+            <h1>Register New Computer</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name:</label>

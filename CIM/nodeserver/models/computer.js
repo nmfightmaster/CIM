@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/dbconfig");
+require('dotenv').config({ path: './.env' });
+const sequelize = require('../config/dbconfig');
 
 const Computer = sequelize.define("computers", {
     id: {
@@ -27,6 +28,18 @@ const Computer = sequelize.define("computers", {
     imagedOn: {
         type: DataTypes.STRING,
     },
+    inInventory: {
+        type: DataTypes.TINYINT,
+        defaultValue: 1,
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+    }
 });
 
  module.exports = Computer;
