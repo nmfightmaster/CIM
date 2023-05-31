@@ -11,10 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 
 sequelize.authenticate();
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-});
-
 app.post('/api/computers', async (req, res) => {
     const { name, serviceTag, model, status } = req.body;
     try {
@@ -26,7 +22,7 @@ app.post('/api/computers', async (req, res) => {
     }
 });
 
-app.post('/api/computers/:query', async (req, res) => {
+app.post('/api/computers/checkin/:query', async (req, res) => {
     const { query } = req.params;
     finalQuery = query;
     if (query.length == 4) {
@@ -43,9 +39,36 @@ app.post('/api/computers/:query', async (req, res) => {
         });
         if (!(computer.inInventory === 1)) {
             computer.inInventory = 1;
-            await computer.save();
-            console.log(computer);
         }
+        await computer.save();
+        return res.json(computer);
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json(err);
+    }
+});
+
+app.post('/api/computers/checkout/:query', async (req, res) => {
+    const { query } = req.params;
+    finalQuery = query;
+    if (query.length == 4) {
+        finalQuery = 'chas' + query;
+    }
+    try {
+        if (finalQuery.startsWith('chas')) {
+            const computer = await Computer.findOne({
+                where: {name: finalQuery}
+            });
+        } else {
+            const computer = await Computer.findOne({
+                where: {serviceTag: finalQuery}
+            });
+        }
+        if (!(computer.inInventory === 0)) {
+            computer.inInventory = 0;
+        }
+        await computer.save();
+        console.log(computer);
         return res.json(computer);
     } catch (err) {
         console.log(err);
@@ -64,23 +87,13 @@ app.get('/api/computers', async (req, res) => {
     }
 });
 
-app.put('/api/computers/:query', async (req, res) => {
-    const { name, serviceTag, model, status } = req.body;
-    const { query } = req.params;
+
+app.get('/api/computers/:name', async (req, res) => {
+    const { name } = req.params;
     try {
         const computer = await Computer.findOne({
-            where: {
-                [Sequelize.Op.or]: [
-                    { serviceTag: query },
-                    { name: query }
-                ]
-            }
+            where: { name: name }
         });
-        computer.name = name;
-        computer.serviceTag = serviceTag;
-        computer.model = model;
-        computer.status = status;
-        await computer.save();
         return res.json(computer);
     } catch (err) {
         console.log(err);

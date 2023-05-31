@@ -29,7 +29,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  /*display: flex; /*delete this to maximize the page window*/
+  flex-direction: column;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;

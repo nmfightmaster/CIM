@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const AddComputer = ({ onComputerAdded }) => {
+const AddComputer = () => {
     const [name, setName] = useState('');
     const [serviceTag, setServiceTag] = useState('');
     const [model, setModel] = useState('');
@@ -20,7 +20,7 @@ const AddComputer = ({ onComputerAdded }) => {
 
         try {
             const response = await axios.post('http://localhost:3001/api/computers', newComputer);
-            console.log('New computer added:', response.data);
+            console.log('New computer added.');
 
             onComputerAdded(response.data);
 

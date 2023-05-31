@@ -9,8 +9,8 @@ const CheckIn = ({onComputerAdded}) => {
 
         try {
             console.log('Querying for computer.');
-            const response = await axios.post(`http://localhost:3001/api/computers/${query}`);
-            console.log('Computer found:', response.data);
+            const response = await axios.post(`http://localhost:3001/api/computers/checkin/${query}`);
+            console.log('Computer found.');
             onComputerAdded(response.data);
             setQuery('');
         } catch (error) {

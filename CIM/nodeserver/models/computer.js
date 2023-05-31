@@ -39,8 +39,17 @@ const Computer = sequelize.define("computers", {
     updatedAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
+    },
+    ou: {
+        type: DataTypes.STRING,
+    },
+    warranty: {
+        type: DataTypes.STRING,
     }
 });
+
+//will use .beforeCreate to make API call to Dell to get warranty info and LDAP query to get OU info
+
 
  module.exports = Computer;
 
