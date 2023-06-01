@@ -1,5 +1,8 @@
 {
     "scripts": {
-      "dev": "concurrently \"cd nodeserver && nodemon start\" \"cd reactfrontend && npm run dev\""
+        "dev": "concurrently \"cd nodeserver && nodemon start\" \"cd reactfrontend && npm run dev\""
+    },
+    "dependencies": {
+        "csv-parse": "^5.4.0"
     }
-  }
+}
