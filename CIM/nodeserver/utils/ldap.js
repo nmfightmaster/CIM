@@ -1,47 +1,74 @@
 const ldap = require('ldapjs');
 require('dotenv').config({ path: '../.env' });
+const assert = require('assert');
+const { get } = require('http');
 
-const client = ldap.createClient({
-  url: process.env.LDAP_PATH,
-  referrals: true,
-});
-
-const bindDN="CN=Inventory Management LDAP,OU=Service Accounts,DC=chas,DC=local";
-const bindCredentials="0OZwgg$hm16DCpB_nyv0%qd74mpm6VanvdE";
-
-client.bind(bindDN, bindCredentials, (err) => {
-  if (err) {
-    console.error('LDAP bind error:', err);
-    return;
+const getOUFromDN = (dn) => {
+  const matches = dn.match(/OU=([^,]+)/gi);
+  if (matches && matches.length > 0) {
+    const ous = matches.map((match) => match.split('=')[1]);
+    return ous.reverse().join('\\');
   }
+  return null; // Return null if no OU component is found
+};
 
-  const machineName='';
-  
-  const options = {
-    scope: 'sub', // Search scope: 'base', 'one', or 'sub'
-    filter: `(objectClass=*)`, // LDAP filter to retrieve specific entries
-    attributes: ['*'],// Attributes to retrieve
-    paged: true,
-  };
-
-  client.search('DC=chas,DC=local', options, (searchErr, searchRes) => {
-    if (searchErr) {
-      console.error('LDAP search error:', searchErr);
-      return;
-    }
-
-    searchRes.on('searchEntry', (entry) => {
-      console.log('Entry:', entry.object);
-      //console.log('Entry: ', entry)
+const getOUFromDeviceName = (deviceName) => {
+  return new Promise((resolve, reject) => {
+    const client = ldap.createClient({
+      url: process.env.LDAP_PATH,
+      referrals: true,
     });
 
-    searchRes.on('error', (error) => {
-      console.error('LDAP search result error:', error);
-    });
+    const bindDN = process.env.LDAP_USER.toString();
+    const bindCredentials = process.env.LDAP_PASS.toString();
 
-    searchRes.on('end', (result) => {
-      console.log('LDAP search finished. Status:', result.status);
-      client.unbind();
+    client.bind(bindDN, bindCredentials, (err) => {
+      if (err) {
+        console.error('LDAP bind error:', err);
+        reject(err);
+        return;
+      }
+
+      const options = {
+        scope: 'sub', // Search scope: 'base', 'one', or 'sub'
+        filter: `(cn=${deviceName})`, // LDAP filter to retrieve specific entries
+        attributes: ['distinguishedName'], // Attributes to retrieve
+      };
+
+      client.search('OU=Workstations,DC=chas,DC=local', options, (err, res) => {
+        assert.ifError(err);
+
+        res.on('searchRequest', (searchRequest) => {
+        });
+
+        let ou = null;
+
+        res.on('searchEntry', (entry) => {
+          const attributes = entry.attributes;
+
+          for (const attribute of attributes) {
+            const attributeValues = attribute.values;
+            const value = getOUFromDN(attributeValues[0]);
+            ou = value;
+          }
+        });
+
+        res.on('error', (err) => {
+          console.error('error: ' + err.message);
+          reject(err);
+        });
+
+        res.on('end', (result) => {
+          client.unbind();
+          if (ou) {
+            resolve(ou);
+          } else {
+            reject(new Error('OU not found'));
+          }
+        });
+      });
     });
   });
-});
+};
+
+module.exports = { getOUFromDeviceName };

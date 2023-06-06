@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const { getWarrantyInfo } = require('./utils/dellApi.js');
 const { backupDatabase, restoreDatabase } = require('./utils/sqlDump.js');
+const { getOUFromDeviceName } = require('./utils/ldap.js');
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -17,17 +18,12 @@ async function dropTable() {
         console.log('Table "computermodels" dropped successfully.');
     } catch (error) {
         console.error('Error dropping table:', error);
-    } finally {
-        // Close the database connection
-        sequelize.close();
+    } finally { 
+        restoreDatabase('./data/database_backup.sql')
     }
 }
 
-// Call the function
 dropTable();
-
-restoreDatabase('./data/database_backup.sql')
-sequelize.authenticate();
 
 app.post('/api/computers', async (req, res) => {
     const { name, serviceTag, model, status } = req.body;
@@ -55,6 +51,7 @@ app.post('/api/computers/checkin/:query', async (req, res) => {
                 ]
             }
         });
+        console.log(computer.inInventory);
         if (!(computer.inInventory === 1)) {
             computer.inInventory = 1;
         }
@@ -119,7 +116,16 @@ app.get('/api/computers/:name', async (req, res) => {
     }
 });
 
-
+app.get('/api/ou/:name', async (req, res) => {
+    const { name } = req.params;
+    try {
+        const ou = await getOUFromDeviceName(name);
+        return res.json(ou.replace(/\\/g, '/'));
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json(err);
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
