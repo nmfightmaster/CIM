@@ -119,18 +119,7 @@ app.get('/api/computers/:name', async (req, res) => {
     }
 });
 
-/*
-app.get('/api/dell/:serviceTag', async (req, res) => {
-    const { serviceTag } = req.params;
-    try {
-        const warrantyInfo = await getWarrantyInfo(serviceTag);
-        return res.json(warrantyInfo);
-    } catch (err) {
-        console.log(err);
-        return res.status(500).json(err);
-    }
-});
-*/
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

@@ -3,6 +3,7 @@
         "dev": "concurrently \"cd nodeserver && nodemon start\" \"cd reactfrontend && npm run dev\""
     },
     "dependencies": {
-        "csv-parse": "^5.4.0"
+        "csv-parse": "^5.4.0",
+        "ldapjs": "^3.0.2"
     }
 }
