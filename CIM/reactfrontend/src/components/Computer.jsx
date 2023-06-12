@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Computer = (props) => {
   const [computer, setComputer] = useState(null);
+  const [ou, setOu] = useState(null);
   const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     fetch(`http://localhost:3001/api/computers/${props.name}`)
@@ -10,43 +11,37 @@ const Computer = (props) => {
         setComputer(data);
       });
   }, []);
+  useEffect(() => {
+    fetch(`http://localhost:3001/api/ou/${props.name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setOu(data);
+      });
+  }, []);
   return (
     <>
       <div
         onClick={() => setExpanded(!expanded)}
-        className="flex flex-wrap border rounded-3xl py-2 px-2 hover:bg-gray-600"
+        className="grid grid-cols-3 border rounded-3xl py-2 px-2 hover:bg-gray-600"
       >
         {!expanded && (
           <>
-            <div className="w-1/3">{computer.name}</div>
-            <div className="w-1/3">{computer.serviceTag}</div>
-            <div className="w-1/3">{computer.model}</div>
+            <div className="">{computer.name}</div>
+            <div className="">{computer.serviceTag}</div>
+            <div className="">{computer.model}</div>
           </>
         )}
         {expanded && (
-          <div className="w-full flex">
-            <div className="w-1/3">Status: {computer.status}</div>
-            <div className="w-1/3">Last Imaged: {computer.imagedOn}</div>
-            <div className="w-1/3">
-              Warranty Expiration: {computer.warranty}
+          <>
+            <div className="">Status: {computer.status}</div>
+            <div className="">
+              Last Imaged:{" "}
+              {computer?.lastImaged ? computer.lastImaged : "Never"}
             </div>
-          </div>
+            <div className="">Warranty Expiration: {computer.warranty}</div>
+            <div className="">OU: {ou}</div>
+          </>
         )}
-      </div>
-      {/* ------------------------------------------------ */}
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>
-        {computer &&
-          Object.keys(computer).map((property) => (
-            <p key={property}>
-              {property}: {computer[property]}
-            </p>
-          ))}
       </div>
     </>
   );
