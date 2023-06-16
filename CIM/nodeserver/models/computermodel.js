@@ -7,7 +7,8 @@ const computerModel = sequelize.define("computerModel", {
   model: DataTypes.STRING,
   status: DataTypes.STRING,
   imagedOn: DataTypes.STRING,
-  inInventory: DataTypes.TINYINT,
+  //inInventory status numbers correlate to specific statuses that will be decided later so I can add more as needed
+  inInventory: DataTypes.INTEGER,
   warranty: DataTypes.STRING,
 });
 

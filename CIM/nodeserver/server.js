@@ -51,6 +51,53 @@ app.get("/api/computers", async (req, res) => {
   }
 });
 
+//get all computer names with inInventory = 1
+app.get("/api/computers/imageables", async (req, res) => {
+  try {
+    const computers = await computerModel.findAll({
+      where: { inInventory: 1 },
+      attributes: ["name"],
+    });
+    return res.json(computers);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+
+app.get("/api/computers/deployables", async (req, res) => {
+  try {
+    const computers = await computerModel.findAll({
+      where: { inInventory: 2 },
+      attributes: ["name"],
+    });
+    return res.json(computers);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+
+//change inInventory value of computer name passed in to value passed in
+app.put("/api/updatestatus/:name", async (req, res) => {
+  var { name } = req.params;
+  const { inInventory } = req.body;
+  //if name length is 4 prepend CHAS to name
+  if (name.length === 4) {
+    name = "CHAS" + name;
+  }
+  try {
+    const computer = await computerModel.update(
+      { inInventory: inInventory },
+      { where: { name: name } }
+    );
+    return res.json(computer);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+
 app.get("/api/computers/:name", async (req, res) => {
   const { name } = req.params;
   try {
@@ -58,6 +105,27 @@ app.get("/api/computers/:name", async (req, res) => {
       where: { name: name },
     });
     return res.json(computer);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+
+//check if computer is in database
+app.get("/api/computers/exists/:name", async (req, res) => {
+  var { name } = req.params;
+  if (name.length === 4) {
+    name = "CHAS" + name;
+  }
+  try {
+    const computer = await computerModel.findOne({
+      where: { name: name },
+    });
+    if (computer) {
+      return res.json(true);
+    } else {
+      return res.json(false);
+    }
   } catch (err) {
     console.log(err);
     return res.status(500).json(err);

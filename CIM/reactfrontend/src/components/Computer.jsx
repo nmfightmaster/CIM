@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 const Computer = (props) => {
-  const [computer, setComputer] = useState(null);
-  const [ou, setOu] = useState(null);
+  const [computer, setComputer] = useState([]);
+  const [ou, setOu] = useState([]);
   const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     fetch(`http://localhost:3001/api/computers/${props.name}`)
@@ -15,14 +15,18 @@ const Computer = (props) => {
     fetch(`http://localhost:3001/api/ou/${props.name}`)
       .then((response) => response.json())
       .then((data) => {
-        setOu(data);
+        if (data) {
+          setOu(data);
+        } else {
+          setOu("Not Found");
+        }
       });
   }, []);
   return (
     <>
       <div
         onClick={() => setExpanded(!expanded)}
-        className="grid grid-cols-3 border rounded-3xl py-2 px-2 hover:bg-gray-600"
+        className="grid grid-cols-3 border rounded-3xl py-1 px-1 hover:bg-gray-600 max-w-lg"
       >
         {!expanded && (
           <>

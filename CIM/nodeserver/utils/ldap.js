@@ -7,8 +7,7 @@ const getOUFromDN = (dn) => {
   const matches = dn.match(/OU=([^,]+)/gi);
   if (matches && matches.length > 0) {
     const ous = matches.map((match) => match.split("=")[1]);
-    //remove Workstations/Locations/ from the beginning of the array
-    return ous.reverse().join("\\");
+    return ous.reverse().splice(2).join("\\");
   }
   return null; // Return null if no OU component is found
 };
