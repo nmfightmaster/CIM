@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('computerModels', {
+    await queryInterface.createTable('Computers', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -18,19 +18,25 @@ module.exports = {
       model: {
         type: Sequelize.STRING
       },
-      status: {
-        type: Sequelize.STRING
-      },
       imagedOn: {
         type: Sequelize.STRING
       },
       inInventory: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
+      },
+      isWiped: {
+        type: Sequelize.BOOLEAN
+      },
+      scriptRan: {
+        type: Sequelize.BOOLEAN
+      },
+      isRenamed: {
+        type: Sequelize.BOOLEAN
+      },
+      isUpdated: {
+        type: Sequelize.BOOLEAN
       },
       warranty: {
-        type: Sequelize.STRING
-      },
-      ou: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -44,6 +50,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('computerModels');
+    await queryInterface.dropTable('Computers');
   }
 };

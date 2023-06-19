@@ -12,6 +12,7 @@ function App() {
   };
 
   useEffect(() => {
+    setDeployables([]);
     fetch("http://localhost:3001/api/computers/deployables")
       .then((response) => response.json())
       .then((data) => {
@@ -20,6 +21,7 @@ function App() {
   }, [state]);
 
   useEffect(() => {
+    setImageables([]);
     fetch("http://localhost:3001/api/computers/imageables")
       .then((response) => response.json())
       .then((data) => {
@@ -28,8 +30,10 @@ function App() {
   }, [state]);
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
+    <div className="">
+      <h1>Computers Needing Imaged</h1>
       <ComputerList names={imageables} />
+      <h1>Computers Ready to Deploy</h1>
       <ComputerList names={deployables} />
       <Checkin onButtonClick={handleCheckIn} />
     </div>

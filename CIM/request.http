@@ -1,7 +1,6 @@
-# PUT http://localhost:3001/api/updatestatus/CHAS71999
-# Content-Type: application/json
+PUT http://localhost:3001/api/status/CHAS6015
+Content-Type: application/json
 
-# {
-#     "inInventory": 1
-# }
-GET http://localhost:3001/api/computers/exists/5363
+{
+    "status": "wiped"
+}

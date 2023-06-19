@@ -1,15 +1,17 @@
 "use strict";
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/config.js");
-const computerModel = sequelize.define("computerModel", {
+const Computer = sequelize.define("Computer", {
   name: DataTypes.STRING,
   serviceTag: DataTypes.STRING,
   model: DataTypes.STRING,
-  status: DataTypes.STRING,
   imagedOn: DataTypes.STRING,
-  //inInventory status numbers correlate to specific statuses that will be decided later so I can add more as needed
   inInventory: DataTypes.INTEGER,
+  isWiped: DataTypes.BOOLEAN,
+  scriptRan: DataTypes.BOOLEAN,
+  isRenamed: DataTypes.BOOLEAN,
+  isUpdated: DataTypes.BOOLEAN,
   warranty: DataTypes.STRING,
 });
 
-module.exports = computerModel;
+module.exports = Computer;

@@ -1,6 +1,6 @@
 const { sequelize } = require("./config/config.js");
 const { Sequelize, QueryInterface } = require("sequelize");
-const computerModel = require("./models/computermodel.js");
+const Computer = require("./models/computer.js");
 const express = require("express");
 const cors = require("cors");
 const PORT = process.env.PORT || 3001;
@@ -15,20 +15,20 @@ app.use(express.urlencoded({ extended: true }));
 async function dropTable() {
   try {
     await sequelize.sync({ force: true });
-    console.log('Table "computermodels" dropped successfully.');
+    console.log("Table dropped successfully.");
   } catch (error) {
     console.error("Error dropping table:", error);
   } finally {
     restoreDatabase("./data/database_backup.sql");
   }
 }
-
+//backupDatabase(); //uncomment to backup database, make sure to comment out restoreDatabase() above
 dropTable();
 
 app.post("/api/computers", async (req, res) => {
   const { name, serviceTag, model, status } = req.body;
   try {
-    const computer = await computerModel.create({
+    const computer = await Computer.create({
       name,
       serviceTag,
       model,
@@ -43,7 +43,7 @@ app.post("/api/computers", async (req, res) => {
 
 app.get("/api/computers", async (req, res) => {
   try {
-    const computers = await computerModel.findAll();
+    const computers = await Computer.findAll();
     return res.json(computers);
   } catch (err) {
     console.log(err);
@@ -54,7 +54,7 @@ app.get("/api/computers", async (req, res) => {
 //get all computer names with inInventory = 1
 app.get("/api/computers/imageables", async (req, res) => {
   try {
-    const computers = await computerModel.findAll({
+    const computers = await Computer.findAll({
       where: { inInventory: 1 },
       attributes: ["name"],
     });
@@ -67,7 +67,7 @@ app.get("/api/computers/imageables", async (req, res) => {
 
 app.get("/api/computers/deployables", async (req, res) => {
   try {
-    const computers = await computerModel.findAll({
+    const computers = await Computer.findAll({
       where: { inInventory: 2 },
       attributes: ["name"],
     });
@@ -79,18 +79,63 @@ app.get("/api/computers/deployables", async (req, res) => {
 });
 
 //change inInventory value of computer name passed in to value passed in
-app.put("/api/updatestatus/:name", async (req, res) => {
+app.put("/api/checkin/:name", async (req, res) => {
   var { name } = req.params;
   const { inInventory } = req.body;
   //if name length is 4 prepend CHAS to name
   if (name.length === 4) {
-    name = "CHAS" + name;
+    passedName = "CHAS" + name;
+  } else {
+    passedName = name;
   }
   try {
-    const computer = await computerModel.update(
+    const computer = await Computer.update(
       { inInventory: inInventory },
-      { where: { name: name } }
+      { where: { name: passedName } }
     );
+    return res.json(computer);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+
+app.put("/api/status/:name", async (req, res) => {
+  const { name } = req.params;
+  const { status } = req.body;
+  let passedName = name;
+
+  // If name length is 4, prepend "CHAS" to the name
+  if (name.length === 4) {
+    passedName = "CHAS" + name;
+  }
+
+  try {
+    let computer = await Computer.findOne({ where: { name: passedName } });
+
+    if (!computer) {
+      return res.status(404).json({ error: "Computer not found" });
+    }
+
+    switch (status) {
+      case "wiped":
+        computer.isWiped = !computer.isWiped;
+        break;
+      case "scriptRan":
+        computer.scriptRan = !computer.scriptRan;
+        break;
+      case "renamed":
+        computer.isRenamed = !computer.isRenamed;
+        break;
+      case "updated":
+        computer.isUpdated = !computer.isUpdated;
+        break;
+      default:
+        return res.status(400).json({ error: "Invalid status" });
+    }
+
+    await computer.save();
+
     return res.json(computer);
   } catch (err) {
     console.log(err);
@@ -101,7 +146,7 @@ app.put("/api/updatestatus/:name", async (req, res) => {
 app.get("/api/computers/:name", async (req, res) => {
   const { name } = req.params;
   try {
-    const computer = await computerModel.findOne({
+    const computer = await Computer.findOne({
       where: { name: name },
     });
     return res.json(computer);
@@ -113,13 +158,15 @@ app.get("/api/computers/:name", async (req, res) => {
 
 //check if computer is in database
 app.get("/api/computers/exists/:name", async (req, res) => {
-  var { name } = req.params;
+  const { name } = req.params;
   if (name.length === 4) {
-    name = "CHAS" + name;
+    const passedName = "CHAS" + name;
+  } else {
+    const passedName = name;
   }
   try {
-    const computer = await computerModel.findOne({
-      where: { name: name },
+    const computer = await Computer.findOne({
+      where: { name: passedName },
     });
     if (computer) {
       return res.json(true);
