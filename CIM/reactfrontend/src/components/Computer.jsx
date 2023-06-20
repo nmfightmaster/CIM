@@ -58,6 +58,30 @@ const Computer = (props) => {
               checked={computer.isWiped}
               onCheckedChange={handleStepChange}
             />
+            <ImagingStep
+              name={computer.name}
+              step="scriptRan"
+              property="scriptRan"
+              label="Imaging Script Ran"
+              checked={computer.scriptRan}
+              onCheckedChange={handleStepChange}
+            />
+            <ImagingStep
+              name={computer.name}
+              step="renamed"
+              property="isRenamed"
+              label="PC Renamed"
+              checked={computer.isRenamed}
+              onCheckedChange={handleStepChange}
+            />
+            <ImagingStep
+              name={computer.name}
+              step="updated"
+              property="isUpdated"
+              label="PC Updated (Dell Command/Windows Updates)"
+              checked={computer.isUpdated}
+              onCheckedChange={handleStepChange}
+            />
           </>
         )}
       </div>

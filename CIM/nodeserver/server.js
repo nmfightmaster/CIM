@@ -22,7 +22,7 @@ async function dropTable() {
     restoreDatabase("./data/database_backup.sql");
   }
 }
-//backupDatabase(); //uncomment to backup database, make sure to comment out restoreDatabase() above
+//backupDatabase(); //uncomment to backup database
 dropTable();
 
 app.post("/api/computers", async (req, res) => {
@@ -132,6 +132,16 @@ app.put("/api/status/:name", async (req, res) => {
         break;
       default:
         return res.status(400).json({ error: "Invalid status" });
+    }
+    if (
+      computer.isWiped &&
+      computer.scriptRan &&
+      computer.isRenamed &&
+      computer.isUpdated
+    ) {
+      computer.isImaged = true;
+    } else {
+      computer.isImaged = false;
     }
 
     await computer.save();

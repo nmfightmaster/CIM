@@ -32,6 +32,7 @@ module.exports = {
         scriptRan: false,
         isRenamed: false,
         isUpdated: false,
+        isImaged: false,
       };
 
       data.push(computerData);
