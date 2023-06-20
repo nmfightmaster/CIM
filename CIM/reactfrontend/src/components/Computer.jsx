@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
+import ImagingStep from "./ImagingStep";
 
 const Computer = (props) => {
   const [computer, setComputer] = useState([]);
   const [ou, setOu] = useState([]);
   const [expanded, setExpanded] = useState(false);
-
+  const handleWipedChange = (isChecked) => {
+    setComputer((prevComputer) => ({
+      ...prevComputer,
+      isWiped: isChecked,
+    }));
+  };
   useEffect(() => {
     fetch(`http://localhost:3001/api/computers/${props.name}`)
       .then((response) => response.json())
@@ -44,6 +50,13 @@ const Computer = (props) => {
             <div className="">OU: {ou}</div>
             <br></br>
             <div onClick={() => setExpanded(!expanded)}>. . .</div>
+            <ImagingStep
+              name={computer.name}
+              step="wiped"
+              label="PC Wiped"
+              checked={computer.isWiped}
+              onCheckedChange={handleWipedChange}
+            />
           </>
         )}
       </div>

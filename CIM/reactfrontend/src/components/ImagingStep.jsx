@@ -15,6 +15,8 @@ const ImagingStep = (props) => {
 
       if (response.ok) {
         const data = await response.json();
+        setChecked(!checked);
+        props.onCheckedChange(!checked);
       } else {
         const errorData = await response.json();
         const errorMessage = errorData.error || "An error occurred";
@@ -22,7 +24,6 @@ const ImagingStep = (props) => {
     } catch (err) {
       console.error(err);
     }
-    setChecked(!checked);
   }
 
   return (
@@ -32,6 +33,7 @@ const ImagingStep = (props) => {
         onChange={() => handleStepChange(props.step)}
         checked={checked}
       ></input>
+      <label>{"  " + props.label}</label>
     </div>
   );
 };
