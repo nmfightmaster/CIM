@@ -16,7 +16,7 @@ const ImagingStep = (props) => {
       if (response.ok) {
         const data = await response.json();
         setChecked(!checked);
-        props.onCheckedChange(!checked);
+        props.onCheckedChange(props.property, !checked);
       } else {
         const errorData = await response.json();
         const errorMessage = errorData.error || "An error occurred";

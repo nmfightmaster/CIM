@@ -5,10 +5,10 @@ const Computer = (props) => {
   const [computer, setComputer] = useState([]);
   const [ou, setOu] = useState([]);
   const [expanded, setExpanded] = useState(false);
-  const handleWipedChange = (isChecked) => {
+  const handleStepChange = (propertyName, newValue) => {
     setComputer((prevComputer) => ({
       ...prevComputer,
-      isWiped: isChecked,
+      [propertyName]: newValue,
     }));
   };
   useEffect(() => {
@@ -53,9 +53,10 @@ const Computer = (props) => {
             <ImagingStep
               name={computer.name}
               step="wiped"
+              property="isWiped"
               label="PC Wiped"
               checked={computer.isWiped}
-              onCheckedChange={handleWipedChange}
+              onCheckedChange={handleStepChange}
             />
           </>
         )}
