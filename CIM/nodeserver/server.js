@@ -81,7 +81,6 @@ app.get("/api/computers/deployables", async (req, res) => {
 //change inInventory value of computer name passed in to value passed in
 app.put("/api/checkin/:name", async (req, res) => {
   var { name } = req.params;
-  const { inInventory } = req.body;
   //if name length is 4 prepend CHAS to name
   if (name.length === 4) {
     passedName = "CHAS" + name;
@@ -89,10 +88,12 @@ app.put("/api/checkin/:name", async (req, res) => {
     passedName = name;
   }
   try {
-    const computer = await Computer.update(
-      { inInventory: inInventory },
-      { where: { name: passedName } }
-    );
+    let computer = await Computer.findOne({ where: { name: passedName } });
+    if (!computer) {
+      return res.status(404).json({ error: "Computer not found" });
+    }
+    computer.inInventory = 1;
+    await computer.save();
     return res.json(computer);
   } catch (err) {
     console.log(err);
@@ -104,7 +105,6 @@ app.put("/api/status/:name", async (req, res) => {
   const { name } = req.params;
   const { status } = req.body;
   let passedName = name;
-
   // If name length is 4, prepend "CHAS" to the name
   if (name.length === 4) {
     passedName = "CHAS" + name;
@@ -112,11 +112,9 @@ app.put("/api/status/:name", async (req, res) => {
 
   try {
     let computer = await Computer.findOne({ where: { name: passedName } });
-
     if (!computer) {
       return res.status(404).json({ error: "Computer not found" });
     }
-
     switch (status) {
       case "wiped":
         computer.isWiped = !computer.isWiped;

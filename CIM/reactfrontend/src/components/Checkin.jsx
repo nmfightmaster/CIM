@@ -11,7 +11,6 @@ const Checkin = ({ onButtonClick }) => {
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ inInventory: 1 }),
         }
       );
     } catch (error) {

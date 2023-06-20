@@ -1,3 +1,5 @@
+const { get } = require("dottie");
+
 require("dotenv").config({ path: "./.env" });
 
 const getAuthToken = async () => {
@@ -28,7 +30,7 @@ const getWarrantyInfo = async (serviceTag) => {
   const authToken = await getAuthToken();
   const warrantyUrl = process.env.DELL_API_URL;
   const response = await fetch(
-    `${warrantyUrl}/asset-entitlements?servicetags=${serviceTag}`,
+    `${warrantyUrl}/asset-entitlement-components?servicetag=${serviceTag}`,
     {
       headers: {
         Authorization: `Bearer ${authToken}`,
@@ -41,16 +43,20 @@ const getWarrantyInfo = async (serviceTag) => {
   const data = await response.json();
   try {
     if (serviceTag.length < 8) {
-      for (let i = 2; i >= 0; i--) {
-        try {
-          const date = new Date(data[0].entitlements[i].endDate);
-          const warrantyInfo = date.toLocaleDateString();
+      for (let i = 0; i < data.entitlements.length; i++) {
+        if (
+          data.entitlements[i].serviceLevelDescription.includes("ProSupport")
+        ) {
+          var date = new Date(data.entitlements[i].endDate);
+          date.setDate(date.getDate() + 1); //add 1 day to account for "23:59" end time
+          const formattedDate = date.toLocaleDateString();
           console.log(
-            "Service Tag:" + serviceTag + " Warranty: " + warrantyInfo
+            "Service Tag: ",
+            serviceTag,
+            "Warranty End Date: ",
+            formattedDate
           );
-          return warrantyInfo;
-        } catch (error) {
-          console.log("entitlements[" + i + "] is undefined");
+          return formattedDate;
         }
       }
     } else {
