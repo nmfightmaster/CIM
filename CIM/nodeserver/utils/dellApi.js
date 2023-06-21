@@ -43,20 +43,34 @@ const getWarrantyInfo = async (serviceTag) => {
   const data = await response.json();
   try {
     if (serviceTag.length < 8) {
-      for (let i = 0; i < data.entitlements.length; i++) {
-        if (
-          data.entitlements[i].serviceLevelDescription.includes("ProSupport")
-        ) {
-          var date = new Date(data.entitlements[i].endDate);
-          date.setDate(date.getDate() + 1); //add 1 day to account for "23:59" end time
-          const formattedDate = date.toLocaleDateString();
-          console.log(
-            "Service Tag: ",
-            serviceTag,
-            "Warranty End Date: ",
-            formattedDate
-          );
-          return formattedDate;
+      if (data.entitlements.length === 1) {
+        var date = new Date(data.entitlements[0].endDate);
+        date.setDate(date.getDate() + 1); //add 1 day to account for "23:59" end time
+        const formattedDate = date.toLocaleDateString();
+        console.log(
+          "Service Tag: ",
+          serviceTag,
+          "Warranty End Date: ",
+          formattedDate,
+          " (only date available)"
+        );
+        return formattedDate;
+      } else {
+        for (let i = 0; i < data.entitlements.length; i++) {
+          if (
+            data.entitlements[i].serviceLevelDescription.includes("ProSupport")
+          ) {
+            var date = new Date(data.entitlements[i].endDate);
+            date.setDate(date.getDate() + 1); //add 1 day to account for "23:59" end time
+            const formattedDate = date.toLocaleDateString();
+            console.log(
+              "Service Tag: ",
+              serviceTag,
+              "Warranty End Date: ",
+              formattedDate
+            );
+            return formattedDate;
+          }
         }
       }
     } else {
