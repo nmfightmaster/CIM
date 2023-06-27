@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import ComputerList from "./components/ComputerList";
 import Checkin from "./components/Checkin";
+
 function App() {
   const [deployables, setDeployables] = useState([]);
   const [imageables, setImageables] = useState([]);
   const [state, setState] = useState(0);
 
-  const handleCheckIn = () => {
+  const rerender = () => {
     setState(state + 1);
   };
 
@@ -32,10 +33,10 @@ function App() {
   return (
     <div className="">
       <h1>Computers Needing Imaged</h1>
-      <ComputerList names={imageables} />
+      <ComputerList names={imageables} rerender={rerender} />
       <h1>Computers Ready to Deploy</h1>
-      <ComputerList names={deployables} />
-      <Checkin onButtonClick={handleCheckIn} />
+      <ComputerList names={deployables} rerender={rerender} />
+      <Checkin onButtonClick={rerender} />
     </div>
   );
 }

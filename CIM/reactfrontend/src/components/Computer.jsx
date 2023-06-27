@@ -29,59 +29,83 @@ const Computer = (props) => {
         }
       });
   }, []);
+  const markImaged = () => {
+    fetch(`http://localhost:3001/api/imaged/${props.name}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        props.rerender();
+      });
+  };
+
   return (
     <>
       <div className="border rounded-xl py-1 px-1 hover:bg-gray-600 w-full text-left">
-        {!expanded && (
-          <div className="grid grid-cols-4 text-center">
-            <div>{computer.name}</div>
-            <div>{computer.serviceTag}</div>
-            <div>{computer.model}</div>
-            <div onClick={() => setExpanded(!expanded)}>. . .</div>
+        <div className="grid grid-cols-4 text-center">
+          <div>{computer.name}</div>
+          <div>{computer.serviceTag}</div>
+          <div>{computer.model}</div>
+          <div onClick={() => setExpanded(!expanded)}>
+            {!expanded ? "+" : "-"}
           </div>
-        )}
+        </div>
         {expanded && (
           <>
-            <div className="">
-              Last Imaged:{" "}
-              {computer?.lastImaged ? computer.lastImaged : "Never"}
+            <hr></hr>
+            <div className="grid grid-cols-2">
+              <div>
+                <div className="">
+                  Last Imaged:{" "}
+                  {computer?.imagedOn ? computer.imagedOn : "Never"}
+                </div>
+                <div className="">Warranty Expiration: {computer.warranty}</div>
+                <div className="">OU: {ou}</div>
+                <br></br>
+                <ImagingStep
+                  name={computer.name}
+                  step="wiped"
+                  property="isWiped"
+                  label="PC Wiped"
+                  checked={computer.isWiped}
+                  onCheckedChange={handleStepChange}
+                />
+                <ImagingStep
+                  name={computer.name}
+                  step="scriptRan"
+                  property="scriptRan"
+                  label="Imaging Script Ran"
+                  checked={computer.scriptRan}
+                  onCheckedChange={handleStepChange}
+                />
+                <ImagingStep
+                  name={computer.name}
+                  step="renamed"
+                  property="isRenamed"
+                  label="PC Renamed"
+                  checked={computer.isRenamed}
+                  onCheckedChange={handleStepChange}
+                />
+                <ImagingStep
+                  name={computer.name}
+                  step="updated"
+                  property="isUpdated"
+                  label="PC Updated (Dell Command/Windows Updates)"
+                  checked={computer.isUpdated}
+                  onCheckedChange={handleStepChange}
+                />
+              </div>
+              <div>
+                <p>Quick Actions:</p>
+                <button className="" onClick={markImaged}>
+                  Mark Imaged
+                </button>
+              </div>
             </div>
-            <div className="">Warranty Expiration: {computer.warranty}</div>
-            <div className="">OU: {ou}</div>
-            <br></br>
-            <div onClick={() => setExpanded(!expanded)}>. . .</div>
-            <ImagingStep
-              name={computer.name}
-              step="wiped"
-              property="isWiped"
-              label="PC Wiped"
-              checked={computer.isWiped}
-              onCheckedChange={handleStepChange}
-            />
-            <ImagingStep
-              name={computer.name}
-              step="scriptRan"
-              property="scriptRan"
-              label="Imaging Script Ran"
-              checked={computer.scriptRan}
-              onCheckedChange={handleStepChange}
-            />
-            <ImagingStep
-              name={computer.name}
-              step="renamed"
-              property="isRenamed"
-              label="PC Renamed"
-              checked={computer.isRenamed}
-              onCheckedChange={handleStepChange}
-            />
-            <ImagingStep
-              name={computer.name}
-              step="updated"
-              property="isUpdated"
-              label="PC Updated (Dell Command/Windows Updates)"
-              checked={computer.isUpdated}
-              onCheckedChange={handleStepChange}
-            />
           </>
         )}
       </div>

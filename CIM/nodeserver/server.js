@@ -78,7 +78,7 @@ app.get("/api/computers/deployables", async (req, res) => {
   }
 });
 
-//change inInventory value of computer name passed in to value passed in
+//change inInventory value of computer name passed in to 1
 app.put("/api/checkin/:name", async (req, res) => {
   var { name } = req.params;
   //if name length is 4 prepend CHAS to name
@@ -93,6 +93,51 @@ app.put("/api/checkin/:name", async (req, res) => {
       return res.status(404).json({ error: "Computer not found" });
     }
     computer.inInventory = 1;
+    await computer.save();
+    return res.json(computer);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+
+app.put("/api/imaged/:name", async (req, res) => {
+  var { name } = req.params;
+  //if name length is 4 prepend CHAS to name
+  if (name.length === 4) {
+    passedName = "CHAS" + name;
+  } else {
+    passedName = name;
+  }
+  try {
+    let computer = await Computer.findOne({ where: { name: passedName } });
+    if (!computer) {
+      return res.status(404).json({ error: "Computer not found" });
+    }
+    computer.inInventory = 2;
+    computer.imagedOn = new Date().toLocaleDateString();
+    await computer.save();
+    return res.json(computer);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+
+app.put("/api/checkout/:name", async (req, res) => {
+  var { name } = req.params;
+  //if name length is 4 prepend CHAS to name
+  if (name.length === 4) {
+    passedName = "CHAS" + name;
+  } else {
+    passedName = name;
+  }
+  try {
+    let computer = await Computer.findOne({ where: { name: passedName } });
+    if (!computer) {
+      return res.status(404).json({ error: "Computer not found" });
+    }
+    computer.inInventory = 0;
     await computer.save();
     return res.json(computer);
   } catch (err) {

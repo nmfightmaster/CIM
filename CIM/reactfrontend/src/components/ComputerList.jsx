@@ -4,7 +4,7 @@ const ComputerList = (props) => {
   return (
     <>
       {props.names.map((computer) => (
-        <Computer name={computer} />
+        <Computer key={computer} name={computer} rerender={props.rerender} />
       ))}
     </>
   );

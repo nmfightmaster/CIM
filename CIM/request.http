@@ -1,6 +1,6 @@
-PUT http://localhost:3001/api/status/CHAS6015
+GET http://localhost:3001/api/computers/deployables
 Content-Type: application/json
 
 {
-    "status": "wiped"
+    
 }
