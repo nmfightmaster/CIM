@@ -79,7 +79,7 @@ app.get("/api/computers/deployables", async (req, res) => {
 });
 
 //change inInventory value of computer name passed in to 1
-app.put("/api/checkin/:name", async (req, res) => {
+app.put("/api/checkinout/:name", async (req, res) => {
   var { name } = req.params;
   //if name length is 4 prepend CHAS to name
   if (name.length === 4) {

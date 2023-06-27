@@ -41,6 +41,7 @@ const Computer = (props) => {
       .then((data) => {
         props.rerender();
       });
+    setImaged(true);
   };
 
   return (
@@ -65,44 +66,66 @@ const Computer = (props) => {
                 </div>
                 <div className="">Warranty Expiration: {computer.warranty}</div>
                 <div className="">OU: {ou}</div>
-                <br></br>
-                <ImagingStep
-                  name={computer.name}
-                  step="wiped"
-                  property="isWiped"
-                  label="PC Wiped"
-                  checked={computer.isWiped}
-                  onCheckedChange={handleStepChange}
-                />
-                <ImagingStep
-                  name={computer.name}
-                  step="scriptRan"
-                  property="scriptRan"
-                  label="Imaging Script Ran"
-                  checked={computer.scriptRan}
-                  onCheckedChange={handleStepChange}
-                />
-                <ImagingStep
-                  name={computer.name}
-                  step="renamed"
-                  property="isRenamed"
-                  label="PC Renamed"
-                  checked={computer.isRenamed}
-                  onCheckedChange={handleStepChange}
-                />
-                <ImagingStep
-                  name={computer.name}
-                  step="updated"
-                  property="isUpdated"
-                  label="PC Updated (Dell Command/Windows Updates)"
-                  checked={computer.isUpdated}
-                  onCheckedChange={handleStepChange}
-                />
+                {!props.imaged && (
+                  <>
+                    <br></br>
+                    <ImagingStep
+                      name={computer.name}
+                      step="wiped"
+                      property="isWiped"
+                      label="PC Wiped"
+                      checked={computer.isWiped}
+                      onCheckedChange={handleStepChange}
+                    />
+                    <ImagingStep
+                      name={computer.name}
+                      step="scriptRan"
+                      property="scriptRan"
+                      label="Imaging Script Ran"
+                      checked={computer.scriptRan}
+                      onCheckedChange={handleStepChange}
+                    />
+                    <ImagingStep
+                      name={computer.name}
+                      step="renamed"
+                      property="isRenamed"
+                      label="PC Renamed"
+                      checked={computer.isRenamed}
+                      onCheckedChange={handleStepChange}
+                    />
+                    <ImagingStep
+                      name={computer.name}
+                      step="updated"
+                      property="isUpdated"
+                      label="PC Updated (Dell Command/Windows Updates)"
+                      checked={computer.isUpdated}
+                      onCheckedChange={handleStepChange}
+                    />
+                  </>
+                )}
               </div>
               <div>
                 <p>Quick Actions:</p>
-                <button className="" onClick={markImaged}>
-                  Mark Imaged
+                <button
+                  className="disabled:opacity-25"
+                  onClick={markImaged}
+                  disabled={
+                    !(
+                      computer.isWiped &&
+                      computer.scriptRan &&
+                      computer.isRenamed &&
+                      computer.isUpdated
+                    )
+                  }
+                  hidden={
+                    computer.isWiped &&
+                    computer.scriptRan &&
+                    computer.isRenamed &&
+                    computer.isUpdated &&
+                    props.imaged
+                  }
+                >
+                  Mark as Imaged
                 </button>
               </div>
             </div>

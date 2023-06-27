@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-const Checkin = ({ onButtonClick }) => {
+const Checkinout = ({ onButtonClick }) => {
   const [computer, setComputer] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3001/api/checkin/${computer}`,
+        `http://localhost:3001/api/Checkinout/${computer}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -41,4 +41,4 @@ const Checkin = ({ onButtonClick }) => {
   );
 };
 
-export default Checkin;
+export default Checkinout;
