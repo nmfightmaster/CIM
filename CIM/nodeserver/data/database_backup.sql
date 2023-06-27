@@ -52,6 +52,34 @@ INSERT INTO `computers` VALUES (1,'CHAS6086','58112651','Surface Go 2\r',NULL,0,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `issues`
+--
+
+DROP TABLE IF EXISTS `issues`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `issues` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) DEFAULT NULL,
+  `loggedOn` varchar(255) DEFAULT NULL,
+  `initials` varchar(255) DEFAULT NULL,
+  `computerId` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `computerId` (`computerId`),
+  CONSTRAINT `issues_ibfk_1` FOREIGN KEY (`computerId`) REFERENCES `computers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `issues`
+--
+
+LOCK TABLES `issues` WRITE;
+/*!40000 ALTER TABLE `issues` DISABLE KEYS */;
+/*!40000 ALTER TABLE `issues` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sequelizemeta`
 --
 
@@ -71,7 +99,7 @@ CREATE TABLE `sequelizemeta` (
 
 LOCK TABLES `sequelizemeta` WRITE;
 /*!40000 ALTER TABLE `sequelizemeta` DISABLE KEYS */;
-INSERT INTO `sequelizemeta` VALUES ('20230601222837-create-computer-model.js'),('20230619195022-create-computer.js'),('20230620183455-add_isImaged.js'),('20230620185152-add_isImaged_again.js'),('20230620234331-isImaged_again.js'),('20230621003752-deletedtablewhoops.js');
+INSERT INTO `sequelizemeta` VALUES ('20230601222837-create-computer-model.js'),('20230619195022-create-computer.js'),('20230620183455-add_isImaged.js'),('20230620185152-add_isImaged_again.js'),('20230620234331-isImaged_again.js'),('20230621003752-deletedtablewhoops.js'),('20230627222524-add_issues_table.js');
 /*!40000 ALTER TABLE `sequelizemeta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -84,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-20 17:55:12
+-- Dump completed on 2023-06-27 16:11:37

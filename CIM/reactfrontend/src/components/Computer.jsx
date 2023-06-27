@@ -11,6 +11,22 @@ const Computer = (props) => {
       [propertyName]: newValue,
     }));
   };
+  const checkOut = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/checkinout/${computer.name}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ way: "out" }),
+        }
+      );
+      props.rerender();
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     fetch(`http://localhost:3001/api/computers/${props.name}`)
       .then((response) => response.json())
@@ -51,12 +67,13 @@ const Computer = (props) => {
           <div>{computer.name}</div>
           <div>{computer.serviceTag}</div>
           <div>{computer.model}</div>
-          <div onClick={() => setExpanded(!expanded)}>
+          <div className="select-none" onClick={() => setExpanded(!expanded)}>
             {!expanded ? "+" : "-"}
           </div>
         </div>
         {expanded && (
           <>
+            <br></br>
             <hr></hr>
             <div className="grid grid-cols-2">
               <div>
@@ -97,7 +114,7 @@ const Computer = (props) => {
                       name={computer.name}
                       step="updated"
                       property="isUpdated"
-                      label="PC Updated (Dell Command/Windows Updates)"
+                      label="Dell Command/Windows Updates"
                       checked={computer.isUpdated}
                       onCheckedChange={handleStepChange}
                     />
@@ -126,6 +143,9 @@ const Computer = (props) => {
                   }
                 >
                   Mark as Imaged
+                </button>
+                <button className="" onClick={checkOut}>
+                  Check Out
                 </button>
               </div>
             </div>

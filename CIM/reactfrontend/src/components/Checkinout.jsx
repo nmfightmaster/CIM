@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 
-const Checkinout = ({ onButtonClick }) => {
+const Checkinout = (props) => {
   const [computer, setComputer] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3001/api/Checkinout/${computer}`,
+        `http://localhost:3001/api/checkinout/${computer}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ way: props.tag }),
         }
       );
     } catch (error) {
       console.error(error);
     }
-    onButtonClick();
+    props.onButtonClick();
     setComputer("");
   };
 
@@ -27,7 +28,7 @@ const Checkinout = ({ onButtonClick }) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="computerinput">Computer</label>
+        <label htmlFor="computerinput">check {props.tag} pc: </label>
         <input
           type="text"
           id="computerinput"
@@ -35,7 +36,7 @@ const Checkinout = ({ onButtonClick }) => {
           value={computer}
           onChange={handleInputChange}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">submit</button>
       </form>
     </div>
   );

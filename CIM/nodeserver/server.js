@@ -13,14 +13,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 async function dropTable() {
-  try {
-    await sequelize.sync({ force: true });
-    console.log("Table dropped successfully.");
-  } catch (error) {
-    console.error("Error dropping table:", error);
-  } finally {
-    restoreDatabase("./data/database_backup.sql");
-  }
+  await sequelize.query("SET FOREIGN_KEY_CHECKS = 0;");
+  console.log("Foreign key checks disabled.");
+
+  await sequelize.query("DROP TABLE issues;");
+  console.log('Table "issues" dropped.');
+
+  await sequelize.query("DROP TABLE computers;");
+  console.log('Table "computers" dropped.');
+
+  await sequelize.query("SET FOREIGN_KEY_CHECKS = 1;");
+  console.log("Foreign key checks re-enabled.");
+
+  restoreDatabase("./data/database_backup.sql");
 }
 //backupDatabase(); //uncomment to backup database
 dropTable();
@@ -81,6 +86,7 @@ app.get("/api/computers/deployables", async (req, res) => {
 //change inInventory value of computer name passed in to 1
 app.put("/api/checkinout/:name", async (req, res) => {
   var { name } = req.params;
+  var { way } = req.body;
   //if name length is 4 prepend CHAS to name
   if (name.length === 4) {
     passedName = "CHAS" + name;
@@ -92,7 +98,18 @@ app.put("/api/checkinout/:name", async (req, res) => {
     if (!computer) {
       return res.status(404).json({ error: "Computer not found" });
     }
-    computer.inInventory = 1;
+    if (way === "in") {
+      computer.inInventory = 1;
+    } else if (way === "out") {
+      computer.inInventory = 0;
+      computer.isImaged = false;
+      computer.isWiped = false;
+      computer.scriptRan = false;
+      computer.isRenamed = false;
+      computer.isUpdated = false;
+    } else {
+      return res.status(400).json({ error: "Invalid 'way' parameter." });
+    }
     await computer.save();
     return res.json(computer);
   } catch (err) {
@@ -116,28 +133,6 @@ app.put("/api/imaged/:name", async (req, res) => {
     }
     computer.inInventory = 2;
     computer.imagedOn = new Date().toLocaleDateString();
-    await computer.save();
-    return res.json(computer);
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
-  }
-});
-
-app.put("/api/checkout/:name", async (req, res) => {
-  var { name } = req.params;
-  //if name length is 4 prepend CHAS to name
-  if (name.length === 4) {
-    passedName = "CHAS" + name;
-  } else {
-    passedName = name;
-  }
-  try {
-    let computer = await Computer.findOne({ where: { name: passedName } });
-    if (!computer) {
-      return res.status(404).json({ error: "Computer not found" });
-    }
-    computer.inInventory = 0;
     await computer.save();
     return res.json(computer);
   } catch (err) {

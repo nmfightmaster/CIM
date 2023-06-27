@@ -36,11 +36,12 @@ function App() {
         <div>
           <h1>Computers Needing Imaged: {imageables.length}</h1>
           <ComputerList names={imageables} rerender={rerender} imaged={false} />
-          <Checkinout onButtonClick={rerender} />
+          <Checkinout onButtonClick={rerender} tag="in" />
         </div>
         <div>
           <h1>Computers Ready to Deploy: {deployables.length}</h1>
           <ComputerList names={deployables} rerender={rerender} imaged={true} />
+          <Checkinout onButtonClick={rerender} tag="out" />
         </div>
       </div>
     </>
