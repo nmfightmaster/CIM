@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import ComputerList from "./components/ComputerList";
-import Checkinout from "./components/Checkinout";
+import SortableHeader from "./components/SortableHeader";
+import CheckIn from "./components/CheckIn";
 
 function App() {
   const [deployables, setDeployables] = useState([]);
@@ -35,15 +36,16 @@ function App() {
       <div className="grid grid-cols-2">
         <div>
           <h1>Computers Needing Imaged: {imageables.length}</h1>
+          <SortableHeader list="unimaged" />
           <ComputerList names={imageables} rerender={rerender} imaged={false} />
-          <Checkinout onButtonClick={rerender} tag="in" />
         </div>
         <div>
           <h1>Computers Ready to Deploy: {deployables.length}</h1>
+          <SortableHeader list="imaged" />
           <ComputerList names={deployables} rerender={rerender} imaged={true} />
-          <Checkinout onButtonClick={rerender} tag="out" />
         </div>
       </div>
+      <CheckIn onButtonClick={rerender} />
     </>
   );
 }

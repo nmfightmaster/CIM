@@ -1,6 +1,7 @@
 const { sequelize } = require("./config/config.js");
 const { Sequelize, QueryInterface } = require("sequelize");
 const Computer = require("./models/computer.js");
+const Issue = require("./models/issue.js");
 const express = require("express");
 const cors = require("cors");
 const PORT = process.env.PORT || 3001;
@@ -232,6 +233,32 @@ app.get("/api/ou/:name", async (req, res) => {
   try {
     const ou = await getOUFromDeviceName(name);
     return res.json(ou.replace(/\\/g, "/"));
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+
+app.post("/api/logissue/:name", async (req, res) => {
+  const { name } = req.params;
+  const { description } = req.body;
+  const { initials } = req.body;
+  try {
+    if (name.length === 4) {
+      const passedName = "CHAS" + name;
+    } else {
+      const passedName = name;
+    }
+    const computer = await Computer.findOne({
+      where: { name: passedName },
+    });
+    const issue = await Issue.create({
+      computerId: computer.id,
+      description,
+      initials,
+      loggedOn: new Date().toLocaleDateString(),
+    });
+    return res.json(issue);
   } catch (err) {
     console.log(err);
     return res.status(500).json(err);

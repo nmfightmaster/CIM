@@ -62,19 +62,17 @@ const Computer = (props) => {
 
   return (
     <>
-      <div className="border rounded-xl py-1 px-1 hover:bg-gray-600 w-full text-left">
-        <div className="grid grid-cols-4 text-center">
+      <div className=" w-full text-left select-none">
+        <div
+          className="grid grid-cols-3 text-center hover:bg-gray-600 border rounded-md py-1 px-1 ease-in-out duration-300"
+          onClick={() => setExpanded(!expanded)}
+        >
           <div>{computer.name}</div>
           <div>{computer.serviceTag}</div>
           <div>{computer.model}</div>
-          <div className="select-none" onClick={() => setExpanded(!expanded)}>
-            {!expanded ? "+" : "-"}
-          </div>
         </div>
         {expanded && (
-          <>
-            <br></br>
-            <hr></hr>
+          <div className="border rounded-md py-1 px-1">
             <div className="grid grid-cols-2">
               <div>
                 <div className="">
@@ -149,7 +147,7 @@ const Computer = (props) => {
                 </button>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     </>

@@ -4,12 +4,14 @@ const ComputerList = (props) => {
   return (
     <>
       {props.names.map((computer) => (
-        <Computer
-          key={computer}
-          name={computer}
-          rerender={props.rerender}
-          imaged={props.imaged}
-        />
+        <>
+          <Computer
+            key={computer}
+            name={computer}
+            rerender={props.rerender}
+            imaged={props.imaged}
+          />
+        </>
       ))}
     </>
   );
