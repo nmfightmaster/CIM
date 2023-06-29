@@ -5,6 +5,8 @@ const Computer = (props) => {
   const [computer, setComputer] = useState([]);
   const [ou, setOu] = useState([]);
   const [expanded, setExpanded] = useState(false);
+  const [issues, setIssues] = useState([]);
+  const [currentIssue, setCurrentIssue] = useState(0);
   const handleStepChange = (propertyName, newValue) => {
     setComputer((prevComputer) => ({
       ...prevComputer,
@@ -45,6 +47,15 @@ const Computer = (props) => {
         }
       });
   }, []);
+  useEffect(() => {
+    fetch(`http://localhost:3001/api/issues/${computer.name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setCurrentIssue(data[data.length - 1]);
+        setIssues(data);
+      });
+  }, []);
+
   const markImaged = () => {
     fetch(`http://localhost:3001/api/imaged/${props.name}`, {
       method: "PUT",
@@ -73,7 +84,7 @@ const Computer = (props) => {
         </div>
         {expanded && (
           <div className="border rounded-md py-1 px-1">
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 div px-3 py-4">
               <div>
                 <div className="">
                   Last Imaged:{" "}
@@ -120,31 +131,44 @@ const Computer = (props) => {
                 )}
               </div>
               <div>
-                <p>Quick Actions:</p>
-                <button
-                  className="disabled:opacity-25"
-                  onClick={markImaged}
-                  disabled={
-                    !(
+                <div className="border rounded-md py-1 px-1">
+                  <p>Quick Actions:</p>
+                  <button
+                    className="disabled:opacity-25"
+                    onClick={markImaged}
+                    disabled={
+                      !(
+                        computer.isWiped &&
+                        computer.scriptRan &&
+                        computer.isRenamed &&
+                        computer.isUpdated
+                      )
+                    }
+                    hidden={
                       computer.isWiped &&
                       computer.scriptRan &&
                       computer.isRenamed &&
-                      computer.isUpdated
-                    )
-                  }
-                  hidden={
-                    computer.isWiped &&
-                    computer.scriptRan &&
-                    computer.isRenamed &&
-                    computer.isUpdated &&
-                    props.imaged
-                  }
-                >
-                  Mark as Imaged
-                </button>
-                <button className="" onClick={checkOut}>
-                  Check Out
-                </button>
+                      computer.isUpdated &&
+                      props.imaged
+                    }
+                  >
+                    Mark as Imaged
+                  </button>
+                  <button className="" onClick={checkOut}>
+                    Check Out
+                  </button>
+                </div>
+                {!props.imaged && (
+                  <>
+                    <p>
+                      Current issue, logged on {currentIssue.loggedOn} by "
+                      {currentIssue.initials}":
+                    </p>
+                    <p className="h-24 overflow-auto border rounded-md py-1 px-1">
+                      {currentIssue.description}
+                    </p>
+                  </>
+                )}
               </div>
             </div>
           </div>

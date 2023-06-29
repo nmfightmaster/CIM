@@ -1,4 +1,4 @@
-GET http://localhost:3001/api/computers/deployables
+GET http://localhost:3001/api/issues/5363
 Content-Type: application/json
 
 {

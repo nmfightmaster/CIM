@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `issues`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `issues` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `description` varchar(255) DEFAULT NULL,
+  `description` text(2000) DEFAULT NULL,
   `loggedOn` varchar(255) DEFAULT NULL,
   `initials` varchar(255) DEFAULT NULL,
   `computerId` int NOT NULL,
