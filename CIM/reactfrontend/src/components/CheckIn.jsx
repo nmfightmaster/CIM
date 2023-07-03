@@ -87,7 +87,7 @@ const CheckIn = (props) => {
             rows="6"
             cols="75"
             placeholder="Please enter a brief description of why the PC is being brought into inventory."
-            className="resize-none px-1 py-1 h-24 overflow-auto"
+            className="resize-none px-1"
             type="text"
             id="issueinput"
             name="issueinput"

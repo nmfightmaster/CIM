@@ -48,7 +48,7 @@ const Computer = (props) => {
       });
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:3001/api/issues/${computer.name}`)
+    fetch(`http://localhost:3001/api/issues/${props.name}`)
       .then((response) => response.json())
       .then((data) => {
         setCurrentIssue(data[data.length - 1]);

@@ -244,10 +244,9 @@ app.post("/api/logissue/:name", async (req, res) => {
   const { description } = req.body;
   const { initials } = req.body;
   try {
+    let passedName = name;
     if (name.length === 4) {
-      const passedName = "CHAS" + name;
-    } else {
-      const passedName = name;
+      passedName = "CHAS" + name;
     }
     const computer = await Computer.findOne({
       where: { name: passedName },
@@ -267,20 +266,18 @@ app.post("/api/logissue/:name", async (req, res) => {
 
 app.get("/api/issues/:name", async (req, res) => {
   const { name } = req.params;
+  console.log("Name: " + name);
   try {
+    let passedName = name;
     if (name.length === 4) {
-      const passedName = "CHAS" + name;
-    } else {
-      const passedName = name;
+      passedName = "CHAS" + name;
     }
     const computer = await Computer.findOne({
       where: { name: passedName },
     });
-    console.log(passedName);
     const issues = await Issue.findAll({
       where: { computerId: computer.id },
     });
-    console.log(computer.id);
     return res.json(issues);
   } catch (err) {
     console.log(err);
