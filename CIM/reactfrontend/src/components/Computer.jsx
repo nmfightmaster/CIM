@@ -166,16 +166,16 @@ const Computer = (props) => {
                 </div>
                 {!props.imaged && (
                   <>
-                    <div className="grid grid-cols-2">
-                      <p>Current issue:</p>
+                    <div className="grid grid-cols-6">
+                      <p className="col-span-5">Current issue:</p>
                       <p
-                        className="text-right underline"
+                        className="text-right hover:underline cursor-pointer col-span-1"
                         onClick={() => setIsModalOpen(true)}
                       >
                         View All
                       </p>
                     </div>
-                    <p className="h-24 overflow-auto border rounded-md py-1 px-1">
+                    <p className="h-24 overflow-auto border rounded-md py-1 px-1 ">
                       {currentIssue.description}
                     </p>
                     <p className="text-right">
@@ -190,7 +190,7 @@ const Computer = (props) => {
         )}
       </div>
       {isModalOpen && (
-        <div className="fixed inset-0 flex bg-opacity-50 items-start justify-center">
+        <div className="fixed inset-0 flex bg-opacity-50 my-40 items-start justify-center">
           <div className="bg-gray-600 w-1/2 border rounded-md p-4">
             <h1>{computer.name} Issue History:</h1>
 
