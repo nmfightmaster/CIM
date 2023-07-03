@@ -7,12 +7,15 @@ const Computer = (props) => {
   const [expanded, setExpanded] = useState(false);
   const [issues, setIssues] = useState([]);
   const [currentIssue, setCurrentIssue] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleStepChange = (propertyName, newValue) => {
     setComputer((prevComputer) => ({
       ...prevComputer,
       [propertyName]: newValue,
     }));
   };
+
   const checkOut = async (e) => {
     e.preventDefault();
     try {
@@ -29,6 +32,7 @@ const Computer = (props) => {
       console.error(error);
     }
   };
+
   useEffect(() => {
     fetch(`http://localhost:3001/api/computers/${props.name}`)
       .then((response) => response.json())
@@ -36,6 +40,7 @@ const Computer = (props) => {
         setComputer(data);
       });
   }, []);
+
   useEffect(() => {
     fetch(`http://localhost:3001/api/ou/${props.name}`)
       .then((response) => response.json())
@@ -47,6 +52,7 @@ const Computer = (props) => {
         }
       });
   }, []);
+
   useEffect(() => {
     fetch(`http://localhost:3001/api/issues/${props.name}`)
       .then((response) => response.json())
@@ -160,12 +166,21 @@ const Computer = (props) => {
                 </div>
                 {!props.imaged && (
                   <>
-                    <p>
-                      Current issue, logged on {currentIssue.loggedOn} by "
-                      {currentIssue.initials}":
-                    </p>
+                    <div className="grid grid-cols-2">
+                      <p>Current issue:</p>
+                      <p
+                        className="text-right underline"
+                        onClick={() => setIsModalOpen(true)}
+                      >
+                        View All
+                      </p>
+                    </div>
                     <p className="h-24 overflow-auto border rounded-md py-1 px-1">
                       {currentIssue.description}
+                    </p>
+                    <p className="text-right">
+                      - logged on {currentIssue.loggedOn} by{" "}
+                      {currentIssue.initials}
                     </p>
                   </>
                 )}
@@ -174,6 +189,33 @@ const Computer = (props) => {
           </div>
         )}
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 flex bg-opacity-50 items-start justify-center">
+          <div className="bg-gray-600 w-1/2 border rounded-md p-4">
+            <h1>{computer.name} Issue History:</h1>
+
+            <table className="w-full">
+              <thead>
+                <tr>
+                  <th>Issue Date</th>
+                  <th>Issue Description</th>
+                  <th>Logged By</th>
+                </tr>
+              </thead>
+              <tbody>
+                {issues.map((issue) => (
+                  <tr key={issue.id}>
+                    <td>{issue.loggedOn}</td>
+                    <td>{issue.description}</td>
+                    <td>{issue.initials}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <button onClick={() => setIsModalOpen(false)}>Close</button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

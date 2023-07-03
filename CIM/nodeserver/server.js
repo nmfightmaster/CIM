@@ -266,7 +266,6 @@ app.post("/api/logissue/:name", async (req, res) => {
 
 app.get("/api/issues/:name", async (req, res) => {
   const { name } = req.params;
-  console.log("Name: " + name);
   try {
     let passedName = name;
     if (name.length === 4) {

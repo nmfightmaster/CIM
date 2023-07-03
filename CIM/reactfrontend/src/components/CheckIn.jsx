@@ -61,7 +61,7 @@ const CheckIn = (props) => {
           <div className="grid grid-cols-3">
             <p className="text-left">Device Name:</p>
             <p></p>
-            <p className="text-left">Initials:</p>
+            <p className="text-left">Name:</p>
             <input
               className="resize-none px-1 py-1"
               type="text"
@@ -87,7 +87,7 @@ const CheckIn = (props) => {
             rows="6"
             cols="75"
             placeholder="Please enter a brief description of why the PC is being brought into inventory."
-            className="resize-none px-1"
+            className="resize-none px-1 py-1"
             type="text"
             id="issueinput"
             name="issueinput"
